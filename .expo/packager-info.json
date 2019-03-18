@@ -1,9 +1,10 @@
 {
-  "devToolsPort": 19003,
-  "expoServerPort": 19000,
-  "packagerPort": 19004,
-  "packagerPid": 71156,
-  "expoServerNgrokUrl": "https://cy-x8f.anonymous.scavengerhunt.exp.direct",
-  "packagerNgrokUrl": "https://packager.cy-x8f.anonymous.scavengerhunt.exp.direct",
-  "ngrokPid": 71171
+  "devToolsPort": 19002,
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
+  "webpackServerPort": null
 }
