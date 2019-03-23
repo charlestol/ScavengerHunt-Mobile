@@ -2,18 +2,54 @@
 import React from 'react'
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
 import firebase from 'firebase';
+import 'firebase/firestore'
 require('./src/config')
+const db = firebase.firestore();
 
 export default class SignUp extends React.Component {
-  state = { email: '', password: '', userType: '', firstName: '', lastName: '', studentID: '', errorMessage: null }
+  state = { email: '', password: '', userType: 'student', firstName: '', lastName: '', studentID: '', errorMessage: null }
 handleSignUp = () => {
+  const {
+        firstName,
+        lastName,
+        studentID,
+        userType,
+        email,
+        password,
+        } = this.state;
   // TODO: Firebase stuff...
-  //Add user stuff later
   firebase
       .auth()
-      .createUserWithEmailAndPassword(this.state.email, this.state.password)
+      .createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        var user = firebase.auth().currentUser;
+        user.updateProfile({
+          displayName: firstName,
+        })
+        db.collection("users").doc(user.email).set(
+         (userType==='student') ? {
+           firstName: firstName,
+           lastName: lastName,
+           email: email,
+           studentID: studentID,
+           uid: user.uid,
+           userType: userType
+         } : {
+           firstName: firstName,
+           lastName: lastName,
+           email: email,
+           uid: user.uid,
+           userType: userType
+         }
+       )
+       .catch(function(error) {
+         console.error("Error writing document: ", error);
+       })
+      })
       .then(() => this.props.navigation.navigate('Main'))
+
       .catch(error => this.setState({ errorMessage: error.message }))
+
   console.log('handleSignUp')
 }
 
