@@ -5,9 +5,10 @@ import firebase from 'firebase';
 require('./src/config')
 
 export default class SignUp extends React.Component {
-  state = { email: '', password: '', errorMessage: null }
+  state = { email: '', password: '', userType: '', firstName: '', lastName: '', studentID: '', errorMessage: null }
 handleSignUp = () => {
   // TODO: Firebase stuff...
+  //Add user stuff later
   firebase
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
@@ -15,6 +16,19 @@ handleSignUp = () => {
       .catch(error => this.setState({ errorMessage: error.message }))
   console.log('handleSignUp')
 }
+
+onClickStudent = () => {
+  this.setState({
+    userType: 'student'
+  });
+}
+
+onClickInstructor = () => {
+  this.setState({
+    userType: 'instructor'
+  });
+}
+
 render() {
     return (
       <View style={styles.container}>
@@ -23,6 +37,34 @@ render() {
           <Text style={{ color: 'red' }}>
             {this.state.errorMessage}
           </Text>}
+        <View style={{flexDirection:'row'}}>
+          <Button title="Student" onPress={this.onClickStudent}/>
+          <Button title="Instructor" onPress={this.onClickInstructor}/>
+        </View>
+
+        <TextInput
+          placeholder="First Name"
+          autoCapitalize="none"
+          style={styles.textInput}
+          onChangeText={firstName => this.setState({ firstName })}
+          value={this.state.firstName}
+        />
+        <TextInput
+          placeholder="Last Name"
+          autoCapitalize="none"
+          style={styles.textInput}
+          onChangeText={lastName => this.setState({ lastName })}
+          value={this.state.lastName}
+        />
+        {this.state.userType === 'student' &&
+          <TextInput
+            placeholder="Student ID"
+            autoCapitalize="none"
+            style={styles.textInput}
+            onChangeText={studentID => this.setState({ studentID })}
+            value={this.state.studentID}
+          />
+        }
         <TextInput
           placeholder="Email"
           autoCapitalize="none"
@@ -44,6 +86,7 @@ render() {
           onPress={() => this.props.navigation.navigate('Login')}
         />
       </View>
+
     )
   }
 }
