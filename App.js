@@ -1,20 +1,21 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+import React from 'react'
+import { StyleSheet, Platform, Image, Text, View } from 'react-native'
+import { createSwitchNavigator, createAppContainer } from 'react-navigation';
+// import the different screens
+import Loading from './Loading'
+import SignUp from './SignUp'
+import Login from './Login'
+import Main from './Main'
+// create our app's navigation stack
+const App = createAppContainer(createSwitchNavigator(
+  {
+    Loading,
+    SignUp,
+    Login,
+    Main
   },
-});
+  {
+    initialRouteName: 'Loading'
+  }
+))
+export default App
