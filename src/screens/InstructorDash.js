@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, Platform, Image, Text, View, Button } from 'react-native'
 import firebase from 'firebase';
+import CreateSH from '../components/CreateSH';
 require('../config')
 
 export default class InstructorDash extends React.Component {
@@ -27,7 +28,7 @@ return (
         <Text>
           Hi {currentUser && currentUser.email}!
         </Text>
-
+        <CreateSH/>
         <Button title="sign out" onPress={this.handleSignout}></Button>
       </View>
     )
