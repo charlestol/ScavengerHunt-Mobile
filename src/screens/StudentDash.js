@@ -1,10 +1,9 @@
-// Main.js
 import React from 'react'
 import { StyleSheet, Platform, Image, Text, View, Button } from 'react-native'
 import firebase from 'firebase';
-require('./src/config')
+require('../config')
 
-export default class Main extends React.Component {
+export default class StudentDash extends React.Component {
   state = { currentUser: null }
 
   componentDidMount() {
@@ -24,6 +23,7 @@ render() {
     const { currentUser } = this.state
 return (
       <View style={styles.container}>
+        <Text>Student Dashboard</Text>
         <Text>
           Hi {currentUser && currentUser.email}!
         </Text>

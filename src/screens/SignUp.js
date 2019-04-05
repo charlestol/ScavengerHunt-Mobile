@@ -3,7 +3,7 @@ import React from 'react'
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
 import firebase from 'firebase';
 import 'firebase/firestore'
-require('./src/config')
+require('../config')
 const db = firebase.firestore();
 
 export default class SignUp extends React.Component {
@@ -23,9 +23,9 @@ handleSignUp = () => {
       .createUserWithEmailAndPassword(email, password)
       .then(() => {
         var user = firebase.auth().currentUser;
-        user.updateProfile({
-          displayName: firstName,
-        })
+        // user.updateProfile({
+        //   displayName: firstName,
+        // })
         db.collection("users").doc(user.email).set(
          (userType==='student') ? {
            firstName: firstName,
@@ -46,7 +46,14 @@ handleSignUp = () => {
          console.error("Error writing document: ", error);
        })
       })
-      .then(() => this.props.navigation.navigate('Main'))
+      .then(() => {
+        if(this.state.userType === 'student') {
+          this.props.navigation.navigate('StudentDash')
+        }
+        else {
+          this.props.navigation.navigate('InstructorDash')
+        }
+      })
 
       .catch(error => this.setState({ errorMessage: error.message }))
 
