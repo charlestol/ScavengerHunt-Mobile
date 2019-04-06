@@ -1,12 +1,13 @@
 import React, { Component } from 'react';  
 import { Alert, Button, View, Text, StyleSheet, TextInput } from 'react-native';
+import DatePicker from 'react-native-datepicker'
 import firebase from 'firebase';
 import 'firebase/firestore'
 require('../config')
 const db = firebase.firestore();
 
 export default class CreateSH extends Component {  
-    state = { name: '', accessCode: '', instructions: ''}
+    state = { name: '', accessCode: '', dateStart: null, dateEnd: null, instructions: ''}
 
     onCreateEvent = () => {
       const {name, accessCode, instructions} = this.state;
@@ -44,6 +45,52 @@ export default class CreateSH extends Component {
                 placeholder="Access Code"
                 onChangeText={accessCode => this.setState({ accessCode })}
                 value={this.state.accessCode}
+            />
+            <DatePicker
+              style={{width: 200}}
+              date={this.state.dateStart}
+              mode="date"
+              placeholder="Select start date"
+              format="YYYY-MM-DD"
+    
+              confirmBtnText="Confirm"
+              cancelBtnText="Cancel"
+              customStyles={{
+                dateIcon: {
+                position: 'absolute',
+                left: 0,
+                top: 4,
+                marginLeft: 0
+              },
+              dateInput: {
+                marginLeft: 36
+              }
+              // ... You can check the source to find the other keys.
+              }}
+              onDateChange={(date) => {this.setState({dateStart: date})}}
+            />
+            <DatePicker
+              style={{width: 200}}
+              date={this.state.dateEnd}
+              mode="date"
+              placeholder="Select end date"
+              format="YYYY-MM-DD"
+    
+              confirmBtnText="Confirm"
+              cancelBtnText="Cancel"
+              customStyles={{
+                dateIcon: {
+                position: 'absolute',
+                left: 0,
+                top: 4,
+                marginLeft: 0
+              },
+              dateInput: {
+                marginLeft: 36
+              }
+              // ... You can check the source to find the other keys.
+              }}
+              onDateChange={(date) => {this.setState({dateEnd: date})}}
             />
             <TextInput
                 style={styles.textInput}
