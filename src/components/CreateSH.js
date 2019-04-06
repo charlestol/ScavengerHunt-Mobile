@@ -1,5 +1,6 @@
 import React, { Component } from 'react';  
 import { Alert, Button, View, Text, StyleSheet, TextInput } from 'react-native';
+import TimePicker from 'react-native-simple-time-picker';
 import DatePicker from 'react-native-datepicker'
 import firebase from 'firebase';
 import 'firebase/firestore'
@@ -7,15 +8,22 @@ require('../config')
 const db = firebase.firestore();
 
 export default class CreateSH extends Component {  
-    state = { name: '', accessCode: '', dateStart: null, dateEnd: null, instructions: ''}
+    state = { name: '', accessCode: '', dateStart: null, dateEnd: null, instructions: '', selectedStartHours: 0,
+    selectedStartMinutes: 0, selectedEndHours: 0, selectedEndMinutes: 0}
 
     onCreateEvent = () => {
-      const {name, accessCode, dateStart, dateEnd, instructions} = this.state;
+      const {name, accessCode, dateStart, dateEnd, instructions, selectedStartHours,
+        selectedStartMinutes, selectedEndHours, selectedEndMinutes} = this.state;
+
+        let start = `${dateStart.toString()} ${selectedStartHours}:${selectedStartMinutes}`
+        let end = `${dateEnd.toString()} ${selectedEndHours}:${selectedEndMinutes}`
+        // firebase.firestore.Timestamp.fromDate(new Date(start))
 
       firebase.auth().onAuthStateChanged(user => {
         const eventData = {
-          name, accessCode, dateStart, dateEnd, instructions, email: user.email
+          name, accessCode, dateStart: start, dateEnd: end, instructions, email: user.email
         }
+        
         db.collection('test').doc(name).set(eventData)
         .then(() => {
             console.log("Document successfully written!");
@@ -69,6 +77,15 @@ export default class CreateSH extends Component {
               }}
               onDateChange={(date) => {this.setState({dateStart: date})}}
             />
+            <TimePicker
+              selectedHours={this.state.selectedStartHours}
+              //initial Hourse value
+              selectedMinutes={this.state.selectedStartMinutes}
+              //initial Minutes value
+              onChange={(hours, minutes) => this.setState({ 
+                selectedStartHours: hours, selectedStartMinutes: minutes 
+              })}
+            />
             <DatePicker
               style={{width: 200}}
               date={this.state.dateEnd}
@@ -91,6 +108,15 @@ export default class CreateSH extends Component {
               // ... You can check the source to find the other keys.
               }}
               onDateChange={(date) => {this.setState({dateEnd: date})}}
+            />
+            <TimePicker
+              selectedHours={this.state.selectedEndHours}
+              //initial Hourse value
+              selectedMinutes={this.state.selectedEndMinutes}
+              //initial Minutes value
+              onChange={(hours, minutes) => this.setState({ 
+                selectedEndHours: hours, selectedEndMinutes: minutes 
+              })}
             />
             <TextInput
                 style={styles.textInput}
