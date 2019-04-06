@@ -10,11 +10,11 @@ export default class CreateSH extends Component {
     state = { name: '', accessCode: '', dateStart: null, dateEnd: null, instructions: ''}
 
     onCreateEvent = () => {
-      const {name, accessCode, instructions} = this.state;
+      const {name, accessCode, dateStart, dateEnd, instructions} = this.state;
 
       firebase.auth().onAuthStateChanged(user => {
         const eventData = {
-          name, accessCode, instructions, email: user.email
+          name, accessCode, dateStart, dateEnd, instructions, email: user.email
         }
         db.collection('test').doc(name).set(eventData)
         .then(() => {
