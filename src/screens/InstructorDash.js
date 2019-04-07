@@ -1,6 +1,8 @@
 import React from 'react'
 import { StyleSheet, Platform, Image, Text, View, Button } from 'react-native'
 import firebase from 'firebase';
+import CreateSH from '../components/CreateSH';
+import ListEvent from '../components/ListEvent';
 require('../config')
 
 export default class InstructorDash extends React.Component {
@@ -14,6 +16,7 @@ export default class InstructorDash extends React.Component {
   handleSignout = () => {
     firebase.auth().signOut().then(function() {
   // Sign-out successful.
+  this.props.navigation.navigate('Login')
 }).catch(function(error) {
   // An error happened.
 });
@@ -27,7 +30,8 @@ return (
         <Text>
           Hi {currentUser && currentUser.email}!
         </Text>
-
+        <CreateSH/>
+        <ListEvent/>
         <Button title="sign out" onPress={this.handleSignout}></Button>
       </View>
     )
