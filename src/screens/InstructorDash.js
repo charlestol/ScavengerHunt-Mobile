@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet, Platform, Image, Text, View, Button } from 'react-native'
 import firebase from 'firebase';
 import CreateSH from '../components/CreateSH';
+import ListEvent from '../components/ListEvent';
 require('../config')
 
 export default class InstructorDash extends React.Component {
@@ -29,6 +30,7 @@ return (
           Hi {currentUser && currentUser.email}!
         </Text>
         <CreateSH/>
+        <ListEvent/>
         <Button title="sign out" onPress={this.handleSignout}></Button>
       </View>
     )
