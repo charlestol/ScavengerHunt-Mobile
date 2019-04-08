@@ -24,7 +24,7 @@ export default class CreateSH extends Component {
           name, accessCode, dateStart: start, dateEnd: end, instructions, email: user.email
         }
         
-        db.collection('test').doc(name).set(eventData)
+        db.collection('scavengerHunts').doc(accessCode).set(eventData)
         .then(() => {
             console.log("Document successfully written!");
             Alert.alert('Event Created');
