@@ -1,5 +1,6 @@
 import React, { Component } from 'react';  
 import { View, Text, TextInput, StyleSheet, Alert, Button } from 'react-native';
+import JoinEvent from './JoinEvent';
 import firebase from 'firebase';
 import 'firebase/firestore'
 require('../config')
@@ -73,13 +74,13 @@ export default class SearchEvent extends Component {
         {scavengerHunt && !closed &&
           <View>
             <Text>{scavengerHunt.name}</Text>
-            {/* <JoinEvent scavengerHunt={scavengerHunt} /> */}
+            <JoinEvent scavengerHunt={scavengerHunt} />
           </View>
         }
         {error && <Text>{error}</Text>}
       </View>
     );
-  }
+  } 
 }
 
 const styles = StyleSheet.create({

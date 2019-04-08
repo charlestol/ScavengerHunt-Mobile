@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, Platform, Image, Text, View, Button } from 'react-native'
 import SearchEvent from '../components/SearchEvent';
+import UserEventHistory from '../components/UserEventHistory';
 import firebase from 'firebase';
 require('../config')
 
@@ -29,6 +30,7 @@ return (
           Hi {currentUser && currentUser.email}!
         </Text>
         <SearchEvent />
+        <UserEventHistory/>
         <Button title="sign out" onPress={this.handleSignout}></Button>
       </View>
     )
