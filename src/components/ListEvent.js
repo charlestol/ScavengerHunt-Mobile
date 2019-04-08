@@ -14,7 +14,8 @@ export default class ListEvent extends Component {
         return;
       }  
         
-      this.unsubscribe = db.collection('test').where("email", "==", user.email)
+        
+      unsubscribe = db.collection('test').where("email", "==", user.email)
       .onSnapshot(snapshot => {
         let scavengerHunts = [];
 

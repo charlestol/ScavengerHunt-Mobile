@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, Platform, Image, Text, View, Button } from 'react-native'
+import SearchEvent from '../components/SearchEvent';
 import firebase from 'firebase';
 require('../config')
 
@@ -27,7 +28,7 @@ return (
         <Text>
           Hi {currentUser && currentUser.email}!
         </Text>
-
+        <SearchEvent />
         <Button title="sign out" onPress={this.handleSignout}></Button>
       </View>
     )
