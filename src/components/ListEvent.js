@@ -10,9 +10,12 @@ export default class ListEvent extends Component {
 
     componentDidMount() {
       firebase.auth().onAuthStateChanged(user => {
+      if(user === null) {
+        return;
+      }  
         
         
-      undefined = db.collection('test').where("email", "==", user.email)
+      unsubscribe = db.collection('test').where("email", "==", user.email)
       .onSnapshot(snapshot => {
         let scavengerHunts = [];
 

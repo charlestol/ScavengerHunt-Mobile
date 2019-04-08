@@ -16,6 +16,7 @@ export default class InstructorDash extends React.Component {
   handleSignout = () => {
     firebase.auth().signOut().then(function() {
   // Sign-out successful.
+  this.props.navigation.navigate('Login')
 }).catch(function(error) {
   // An error happened.
 });
