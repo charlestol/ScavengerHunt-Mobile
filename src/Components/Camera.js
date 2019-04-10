@@ -2,7 +2,6 @@ import React, { Component, Props } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import { Container, Content, Header, Item, Icon, Button, Input, CameraRoll } from 'native-base';
 import { Camera, Permissions, MediaLibrary } from 'expo';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import DisplayImage from './DisplayImage';
 
 
@@ -64,18 +63,7 @@ class CameraComponent extends Component {
                                 left: 0, top: 0, right: 0, zIndex: 100, alignItems: 'center'
                             }}
                         >
-                            {/* <View style={{ flexDirection: 'row', flex: 4 }}>
 
-                                <Icon name="logo-snapchat" style={{ color: 'white' }} />
-                                <Item style={{ backgroundColor: 'transparent' }}>
-                                    <Icon name="ios-search"
-                                        style={{ color: 'white', fontSize: 24, fontWeight: 'bold' }}>
-                                    </Icon>
-                                    <Input
-                                        placeholder="Search"
-                                        placeholderTextColor="white" />
-                                </Item>
-                            </View> */}
                             <View style={{ flexDirection: 'row', flex: 2, justifyContent: 'space-around' }}>
 
                                 <Icon name="ios-flash" style={{ color: 'white', fontWeight: 'bold' }} />
@@ -99,9 +87,7 @@ class CameraComponent extends Component {
                                 alignItems: 'flex-end'
                             }}
                         >
-                            {/* <MaterialCommunityIcons name="message-reply"
-                                style={{ color: 'white', fontSize: 36 }}>
-                            </MaterialCommunityIcons> */}
+
 
                             <View style={{position: 'absolute', backgroundColor: 'transparent',
                                 left: 0, right: 0, alignItems: 'center' }}>
@@ -112,16 +98,10 @@ class CameraComponent extends Component {
                                         
                                         />
                                 </TouchableOpacity>
-                                {/* <TouchableOpacity>
-                                    <Icon name="ios-images" style={{ color: 'white', fontSize: 36 }} />
-                                </TouchableOpacity> */}
 
 
                             </View>
 
-                            {/* <MaterialCommunityIcons name="google-circles-communities"
-                                style={{ color: 'white', fontSize: 36 }}>
-                            </MaterialCommunityIcons> */}
                         </View>
 
                     </Camera>
