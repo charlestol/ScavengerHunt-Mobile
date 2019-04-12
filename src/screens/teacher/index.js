@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { ListView } from "react-native";
 import {
   Container,
   Header,
@@ -33,11 +34,20 @@ class Teacher extends Component {
 
   constructor(props) {
     super(props);
+    this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
       tab1: true,
       tab2: false,
       tab3: false,
+      basic: true,
+      listViewData: datas
     };
+  }
+  deleteRow(secId, rowId, rowMap) {
+    rowMap[`${secId}${rowId}`].props.closeRow();
+    const newData = [...this.state.listViewData];
+    newData.splice(rowId, 1);
+    this.setState({ listViewData: newData });
   }
   toggleTab1() {
     this.setState({
@@ -85,18 +95,45 @@ class Teacher extends Component {
           </Right>
         </Header>
         <Content>
-        <List
-            dataArray={datas}
+          <List
+            dataSource={this.ds.cloneWithRows(this.state.listViewData)}
             renderRow={data =>
-              <ListItem>
-                <Left>
-                  <Text>
-                    {data}
-                  </Text>
-                </Left>
+              <ListItem style={{ paddingLeft: 20 }}>
+                <Text>
+                  {data}
+                </Text>
               </ListItem>}
+            renderLeftHiddenRow={data =>
+              <Button
+                full
+                // onPress={() => alert(data)}
+                style={{
+                  backgroundColor: "#CCC",
+                  flex: 1,
+                  alignItems: "center",
+                  justifyContent: "center"
+                }}
+              >
+                <Icon active name="information-circle" />
+              </Button>}
+            renderRightHiddenRow={(data, secId, rowId, rowMap) =>
+              <Button
+                full
+                danger
+                onPress={_ => this.deleteRow(secId, rowId, rowMap)}
+                style={{
+                  flex: 1,
+                  alignItems: "center",
+                  justifyContent: "center"
+                }}
+              >
+                <Icon active name="trash" />
+              </Button>}
+            leftOpenValue={75}
+            rightOpenValue={-75}
           />
-          </Content>
+        </Content>
+
         <Footer>
           <FooterTab>
             <Button active={this.state.tab1} onPress={() => this.toggleTab1()}>
