@@ -2,9 +2,7 @@
 
 *	**Clone and install packages**
 ```
-git clone
-cd CZI
 yarn
-yarn add native-base
+yarn add native-base --save
 yarn start
 ```
