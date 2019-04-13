@@ -39,6 +39,14 @@ class Login extends Component {
           <Button
               block
               transparent
+              onPress={() => this.props.navigation.navigate('')}
+              style={styles.forgotBtn}
+            >
+              <Text>Forgot Password</Text>
+          </Button>
+          <Button
+              block
+              transparent
               onPress={() => this.props.navigation.navigate('Signup')}
               style={styles.signupBtn}
             >

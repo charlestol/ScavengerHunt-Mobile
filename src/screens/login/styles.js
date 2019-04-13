@@ -15,7 +15,13 @@ export default {
       marginLeft: 50
     },
     signupBtn: {
-      marginTop: 200
+      marginTop: 15,
+      marginRight: 50,
+      marginLeft: 50
+    },
+    forgotBtn: {
+      marginTop: 200,
+      marginRight: 50,
+      marginLeft: 50
     }
-
   };
