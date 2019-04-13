@@ -10,6 +10,12 @@ export default {
     picker: {
       margin: 20
     
+    },
+    radioBtn: {
+      marginTop: 15,
+      marginRight: 50,
+      marginLeft: 50,
+      flexDirection: 'row'
     }
 
   };

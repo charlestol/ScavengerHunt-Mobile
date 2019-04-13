@@ -9,15 +9,36 @@ import {
   Input,
   Form,
   Text, 
-  Picker,
-  Icon,
-  H1
+  H1,
+  Radio,
+  ListItem,
+  Left,
+  Right
 } from "native-base";
 import styles from "./styles";
 
 // const Item = Picker.Item;
 
 class Signup extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      radio1: false,
+      radio2: false,
+    };
+  }
+  toggleRadio1() {
+    this.setState({
+      radio1: true,
+      radio2: false,
+    });
+  }
+  toggleRadio2() {
+    this.setState({
+      radio1: false,
+      radio2: true,
+    });
+  }
   render() {
     return (
       <Container >
@@ -41,6 +62,41 @@ class Signup extends Component {
               <Input secureTextEntry />
             </Item>
           </Form>
+          <ListItem
+            style={styles.radioBtn}
+            selected={this.state.radio1}
+            onPress={() => this.toggleRadio1()}
+          >
+            <Left>
+              <Text>Student</Text>
+            </Left>
+            <Right>
+              <Radio
+                // color={"#f0ad4e"}
+                selectedColor={"#5cb85c"}
+                selected={this.state.radio1}
+                onPress={() => this.toggleRadio1()}
+              />
+            </Right>
+          </ListItem>
+          <ListItem
+            style={styles.radioBtn}  
+            selected={this.state.radio2}
+            onPress={() => this.toggleRadio2()}
+          >
+            <Left>
+              <Text>Teacher</Text>
+            </Left>
+            <Right>
+              <Radio
+                // color={"#f0ad4e"}
+                selectedColor={"#5cb85c"}
+                selected={this.state.radio2}
+                onPress={() => this.toggleRadio2()}
+              />
+            </Right>
+          </ListItem>
+
           <Button
               block
               onPress={() => this.props.navigation.navigate('Login')}
