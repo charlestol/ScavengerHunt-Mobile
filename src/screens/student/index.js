@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Dialog from "react-native-dialog";
+import {StyleSheet } from 'react-native';
 import {
   Container,
   Header,
@@ -116,7 +117,7 @@ class Student extends Component {
                   </Text>
                 </Left>
                 <Button 
-                  bordered 
+                  transparent 
                   onPress={() => this.props.navigation.navigate('ViewSH')}
                 >
                     <Text>View</Text>
@@ -153,8 +154,8 @@ class Student extends Component {
               <Input/>
             </Item>
           </Form>
-          <Dialog.Button label="Cancel" onPress={this.handleCancel} />
-          <Dialog.Button label="Add" onPress={this.handleAdd} />
+          <Dialog.Button style={styles.popupBtn} label="Cancel" onPress={this.handleCancel}/>
+          <Dialog.Button style={styles.popupBtn} label="Add" onPress={this.handleAdd} />
         </Dialog.Container>
       </View>
       </Container>

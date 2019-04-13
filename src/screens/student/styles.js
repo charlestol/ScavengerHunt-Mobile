@@ -1,6 +1,6 @@
 export default {
   container: {
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
   },
   text: {
     alignSelf: "center",
@@ -17,7 +17,14 @@ export default {
   addBtn: {
     flexDirection: "row",
     margin: 10
-    
+  },
+  popupBtn : {
+    borderRadius: 2,
+    borderWidth: 1,
+    borderColor: 'black',
+    margin: 5,
+    // backgroundColor: 'green',
+    // width: '100%',
   }
 };
 
