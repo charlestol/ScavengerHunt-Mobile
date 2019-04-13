@@ -3,9 +3,9 @@ import Dialog from "react-native-dialog";
 import {StyleSheet } from 'react-native';
 import {
   Container,
+  Content,
   Header,
   Title,
-  Content,
   Text,
   Button,
   Icon,
@@ -14,14 +14,16 @@ import {
   Left,
   Right,
   Body,
-  ListItem,
-  List,
   Form,
   Item,
   Label,
   Input,
   View,
-  Badge
+  Badge,
+  Tab,
+  Tabs,
+  List,
+  ListItem
 } from "native-base";
 
 import styles from "./styles";
@@ -44,7 +46,6 @@ const datas = [
   "Joe Allen",
   "Phil Coutinho"
 ];
-
 class Student extends Component {
 
   onPressNotification(){
@@ -106,10 +107,12 @@ class Student extends Component {
             </Button>
           </Right>
         </Header>
-        <Content>
-        <List
-            dataArray={datas}
-            renderRow={data =>
+        <Tabs>
+          <Tab heading="All">
+          <Content>
+            <List
+              dataArray={datas}
+              renderRow={data =>
               <ListItem>
                 <Left>
                   <Text>
@@ -120,11 +123,21 @@ class Student extends Component {
                   transparent 
                   onPress={() => this.props.navigation.navigate('ViewSH')}
                 >
-                    <Text>View</Text>
+                  <Text>View</Text>
                 </Button>
               </ListItem>}
-          />
+            />
           </Content>
+          </Tab>
+          <Tab heading="Active">
+            <Content>
+            </Content>
+          </Tab>
+          <Tab heading="Completed">
+            <Content>
+            </Content>
+          </Tab>
+        </Tabs>
         <Footer>
           <FooterTab>
             <Button active={this.state.tab1} onPress={() => this.toggleTab1()}>

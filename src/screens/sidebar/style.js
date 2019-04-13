@@ -32,7 +32,8 @@ export default {
     marginTop: Platform.OS === "android" ? -3 : undefined
   },
   navHeader: {
-    margin: 35
+    margin: 35,
+    marginTop: 100
   }
   
 };

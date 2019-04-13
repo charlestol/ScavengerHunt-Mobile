@@ -20,7 +20,7 @@ const Drawer = createDrawerNavigator(
     ViewSH: {screen: ViewSH},
     CreateSH: {screen: CreateSH},
     Student: {screen: Student},
-    Teacher: {screen: Teacher}
+    Teacher: {screen: Teacher},
   },
   {
     initialRouteName: "Login",
