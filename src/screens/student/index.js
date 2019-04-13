@@ -29,22 +29,20 @@ import {
 import styles from "./styles";
 
 const datas = [
-  "Simon Mignolet",
-  "Nathaniel Clyne",
-  "Dejan Lovren",
-  "Mama Sakho",
-  "Alberto Moreno",
-  "Emre Can",
-  "Joe Allen",
-  "Phil Coutinho",
-  "Simon Mignolet",
-  "Nathaniel Clyne",
-  "Dejan Lovren",
-  "Mama Sakho",
-  "Alberto Moreno",
-  "Emre Can",
-  "Joe Allen",
-  "Phil Coutinho"
+  "Take a picture of a tree",
+  "Go to a park",
+  "Write about the field trip",
+  "Nature walk",
+  "Explore the campus",
+  "Go to the library",
+  "Read a book",
+  "Take a picture of a tree",
+  "Go to a park",
+  "Write about the field trip",
+  "Nature walk",
+  "Explore the campus",
+  "Go to the library",
+  "Read a book",
 ];
 class Student extends Component {
 
@@ -115,9 +113,10 @@ class Student extends Component {
               renderRow={data =>
               <ListItem>
                 <Left>
-                  <Text>
-                    {data}
-                  </Text>
+                  <Body>
+                    <Text style={{fontWeight: "normal"}}> {data}</Text>
+                    <Text note> Due: April 15, 2016</Text>
+                  </Body>
                 </Left>
                 <Button 
                   transparent 

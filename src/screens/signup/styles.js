@@ -3,8 +3,9 @@ export default {
       backgroundColor: "#FFF",
     },
     signupBtn: {
-      margin: 15, 
-      marginTop: 50
+        marginTop: 50,
+        marginRight: 50,
+        marginLeft: 50
     },
     picker: {
       margin: 20

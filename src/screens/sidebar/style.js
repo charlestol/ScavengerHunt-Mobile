@@ -20,6 +20,9 @@ export default {
     height: 75,
     resizeMode: "cover"
   },
+  drawerLogo:{
+    position: "relative",
+  },
   text: {
     fontWeight: Platform.OS === "ios" ? "500" : "400",
     fontSize: 16,
@@ -33,7 +36,13 @@ export default {
   },
   navHeader: {
     margin: 35,
-    marginTop: 100
-  }
+    marginTop: 35
+  },
+  navLogout:{
+    // marginTop: deviceHeight/2
+  },
+  mb10: {
+    marginBottom: 10
+  },
   
 };

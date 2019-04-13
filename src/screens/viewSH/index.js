@@ -31,7 +31,7 @@ class ViewSH extends Component {
               // onPress={() => this.props.navigation.goBack()}
               >
               <Icon name="arrow-back" />
-              <Text>Back</Text>
+              <Text >Back</Text>
             </Button>
         </Left>
           <Body>
@@ -40,6 +40,7 @@ class ViewSH extends Component {
           <Right />
         </Header>
         <Content padder>
+        <Text style={{fontWeight: "bold", margin: 5}}> Assignment Name</Text>
         <Card style={styles.mb}>
             <CardItem bordered>
               <Left>
@@ -47,25 +48,22 @@ class ViewSH extends Component {
                     <Text>Take a picture of a tree</Text>
                     <Text note>April 15, 2016</Text>
                 </Body>
-                <Button bordered >
+                <Button transparent >
                       <Text>Camera</Text>
                 </Button>
               </Left>
             </CardItem>
-            <CardItem>
-              <Body>
-                <Image
-                  style={{
-                    alignSelf: "center",
-                    height: 250,
-                    resizeMode: "cover",
-                    width: deviceWidth / 1.18,
-                    marginVertical: 5
-                  }}
-                  source={cardImage}
-                />
-              </Body>
-            </CardItem>
+            <CardItem cardBody>
+              <Image
+                style={{
+                  resizeMode: "cover",
+                  width: null,
+                  height: 250,
+                  flex: 1
+                }}
+                source={cardImage}
+              />
+            </CardItem> 
           </Card>
           <Card style={styles.mb}>
             <CardItem bordered>

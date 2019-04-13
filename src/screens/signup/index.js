@@ -10,7 +10,8 @@ import {
   Form,
   Text, 
   Picker,
-  Icon
+  Icon,
+  H1
 } from "native-base";
 import styles from "./styles";
 
@@ -21,13 +22,18 @@ class Signup extends Component {
     return (
       <Container >
         <Content>
-          <Form>
+          <H1 style={{marginTop: 200, textAlign: "center"}}>Sign up</H1>
+          <Form style={{marginLeft: 35, marginRight: 35}}>
           <Item floatingLabel>
               <Label>Email</Label>
               <Input />
             </Item>
             <Item floatingLabel>
-              <Label>Username</Label>
+              <Label>First Name</Label>
+              <Input />
+            </Item>
+            <Item floatingLabel>
+              <Label>Last Name</Label>
               <Input />
             </Item>
             <Item floatingLabel last>

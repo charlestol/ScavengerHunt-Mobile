@@ -9,9 +9,14 @@ import {
   Container,
   Left,
   H1,
+  Image,
+  Thumbnail,
+  Toast
 } from "native-base";
 import styles from "./style";
 
+
+// const logoCZI = require("../../../assets/logoCZI.png");
 const datas = [
   {
     name: "Student Dashboard",
@@ -30,12 +35,6 @@ const datas = [
     route: "Login",
     icon: "phone-portrait",
     bg: "#C5F442"
-  },
-  {
-    name: "Logout",
-    route: "Logout",
-    icon: "exit",
-    bg: "#C5F442"
   }
 ];
 
@@ -44,8 +43,17 @@ class SideBar extends Component {
     super(props);
     this.state = {
       shadowOffsetWidth: 1,
-      shadowRadius: 4
+      shadowRadius: 4,
+      showToast: false
     };
+  }
+  onPressLogout(){
+    this.props.navigation.navigate('Login');
+    Toast.show({
+      text: "Logged Out",
+      buttonText: "Okay",
+      type: "success"
+    })
   }
 
   render() {
@@ -57,6 +65,7 @@ class SideBar extends Component {
           style={{ flex: 1, backgroundColor: "#fff", top: -1 }}
         >
           <View style={styles.navHeader}>
+            {/* <Thumbnail small source={logoCZI} style={styles.drawerLogo} /> */}
             <H1 style={{fontWeight: 'bold'}}>User Name</H1>
             <Text>Email</Text>
           </View>
@@ -77,9 +86,25 @@ class SideBar extends Component {
                   <Text style={styles.text}>
                     {data.name}
                   </Text>
+                  
                 </Left>
               </ListItem>}
+              
           />
+          <ListItem style={styles.navLogout}
+            onPress={() => this.onPressLogout()}
+          >
+          <Left>
+            <Icon
+              active
+              name={"exit"}
+              style={{ color: "#777", fontSize: 26, width: 30 }}
+            />
+            <Text style={styles.text}>
+              Logout
+            </Text>
+          </Left>
+          </ListItem>
         </Content>
       </Container>
     );

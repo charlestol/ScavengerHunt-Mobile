@@ -8,7 +8,8 @@ import {
   Label,
   Input,
   Form,
-  Text
+  Text,
+  H1
 } from "native-base";
 import styles from "./styles";
 
@@ -17,7 +18,8 @@ class Login extends Component {
     return (
       <Container >
         <Content style={styles.content}>
-          <Form>
+          <H1 style={{marginTop: 200, textAlign: "center"}}>Login</H1>
+          <Form style={{marginLeft: 35, marginRight: 35}}>
             <Item floatingLabel>
               <Label>Username</Label>
               <Input />
@@ -36,10 +38,11 @@ class Login extends Component {
           </Button>
           <Button
               block
+              transparent
               onPress={() => this.props.navigation.navigate('Signup')}
               style={styles.signupBtn}
             >
-              <Text>Sign Up</Text>
+              <Text>Create an account</Text>
           </Button>
         </Content>
       </Container>

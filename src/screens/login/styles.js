@@ -10,12 +10,12 @@ export default {
       // width: deviceWidth / 1.10,
     },
     loginBtn: {
-      margin: 15, 
-      marginTop: 50
+      marginTop: 50,
+      marginRight: 50,
+      marginLeft: 50
     },
     signupBtn: {
-      margin: 15, 
-      marginTop: 15
+      marginTop: 200
     }
 
   };
