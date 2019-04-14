@@ -17,18 +17,26 @@ import {
   Item,
   Input,
   H2,
+  Picker
 } from "native-base";
 import { Grid, Row, Col } from "react-native-easy-grid";
 import styles from "./styles";
 
+const ItemPicker = Picker.Item;
 class CreateSH extends Component {
   constructor(props) {
     super(props);
-    this.state = { chosenDate: new Date() };
-
+    this.state = { 
+      chosenDate: new Date(),
+      selected2: undefined 
+    };
     this.setDate = this.setDate.bind(this);
   }
-
+  onValueChange2(value) {
+    this.setState({
+      selected2: value
+    });
+  }
   setDate(newDate) {
     this.setState({ chosenDate: newDate });
   }
@@ -64,24 +72,92 @@ class CreateSH extends Component {
                 </Form>
               </Content>
               </Row>
-              <Row style={{height: 30, marginTop: 25}} >
+              <Row style={{height: 38, marginTop: 10}} >
                 <Col> 
-                  <H2>Question</H2>
+                  <H2 style={{paddingTop: 15}}>Question</H2>
                 </Col>
-                <Col style={{marginLeft: 100}}>
-                  <H2>Type</H2>
+                <Col style={{marginLeft: 100, height: 40}}>
+                <Content >
+                  <Form >
+                    <Picker
+                      mode="dropdown"
+                      iosIcon={<Icon name="ios-arrow-down" />}
+                      style={{ width: undefined }}
+                      placeholder="Type"
+                      placeholderStyle={{ color: "#bfc6ea" }}
+                      placeholderIconColor="#007aff"
+                      selectedValue={this.state.selected2}
+                      onValueChange={this.onValueChange2.bind(this)}
+                    >
+                      <ItemPicker label="Text" value="key0" />
+                      <ItemPicker label="Image" value="key1" />
+                    </Picker>
+                  </Form>
+                </Content>
                 </Col>
               </Row>
-              <Row style={{height: 50}}>
+              <Row style={{height: 60}}>
                 <Content>
                   <Form>
                     <Item>
                       <Input placeholder="Input question" />
                     </Item>
                   </Form>
+                  
                   </Content>
               </Row>
-              <Row style={{height: 100, marginTop: 25}}>
+              {/* Generate the code below when clicked "ADD MORE" */}
+
+              {/* <Row style={{height: 38, marginTop: 10}} >
+                <Col> 
+                  <H2 style={{paddingTop: 15}}>Question</H2>
+                </Col>
+                <Col style={{marginLeft: 100, height: 40}}>
+                <Content >
+                  <Form >
+                    <Picker
+                      mode="dropdown"
+                      iosIcon={<Icon name="ios-arrow-down" />}
+                      style={{ width: undefined }}
+                      placeholder="Type"
+                      placeholderStyle={{ color: "#bfc6ea" }}
+                      placeholderIconColor="#007aff"
+                      selectedValue={this.state.selected2}
+                      onValueChange={this.onValueChange2.bind(this)}
+                    >
+                      <ItemPicker label="Text" value="key0" />
+                      <ItemPicker label="Image" value="key1" />
+                    </Picker>
+                  </Form>
+                </Content>
+                </Col>
+              </Row>
+              <Row style={{height: 60}}>
+                <Content>
+                  <Form>
+                    <Item>
+                      <Input placeholder="Input question" />
+                    </Item>
+                  </Form>
+                  
+                  </Content>
+              </Row> */}
+              <Row style={{height: 10, marginTop: 10, marginBottom:20}}>
+                <Col>
+                </Col>
+                <Col style={{marginLeft: 170}}>
+                <Button
+                // block
+                transparent
+                // bordered
+                >
+                  <Text>Add more</Text>
+                </Button>
+                </Col>
+                
+              </Row>
+              
+              <Row style={{height: 115, marginTop: 20}}>
                 <Content>
                   <H2>Due Date</H2>
                   <DatePicker
@@ -94,7 +170,7 @@ class CreateSH extends Component {
                     animationType={"fade"}
                     androidMode={"default"}
                     placeHolderText="Select date"
-                    textStyle={{ color: "green" }}
+                    textStyle={{ color: "red" }}
                     placeHolderTextStyle={{ color: "#d3d3d3" }}
                     onDateChange={this.setDate}
                   />
@@ -103,11 +179,18 @@ class CreateSH extends Component {
                   </Text>
                 </Content>
               </Row>
+              <Row></Row>
+              <Button
+                block
+              > 
+                <Text>Create Assignment</Text>
+              </Button>
             </Col>
           </Grid>
         </Tab>
         <Tab heading="Review">
-        <Content></Content>
+        <Content>
+        </Content>
         </Tab>
       </Tabs>
       </Container>
