@@ -2,19 +2,19 @@ import React from 'react'
 import { StyleSheet, Platform, Image, Text, View } from 'react-native'
 import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 // import the different screens
-import Loading from './src/screens/Loading'
-import SignUp from './src/screens/SignUp'
-import Login from './src/screens/Login'
-import StudentDash from './src/screens/StudentDash'
-import InstructorDash from './src/screens/InstructorDash'
+import Loading from './src/components/auth/loading'
+import SignUp from './src/components/auth/signUp'
+import Login from './src/components/auth/login'
+import Student from './src/components/student/dashboard'
+import Instructor from './src/components/instructor/dashboard'
 // create our app's navigation stack
 const App = createAppContainer(createSwitchNavigator(
   {
     Loading,
     SignUp,
     Login,
-    StudentDash,
-    InstructorDash
+    Student,
+    Instructor
   },
   {
     initialRouteName: 'Loading'

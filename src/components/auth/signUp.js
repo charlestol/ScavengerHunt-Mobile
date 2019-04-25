@@ -3,7 +3,7 @@ import React from 'react'
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
 import firebase from 'firebase';
 import 'firebase/firestore'
-require('../config')
+require('../../config')
 const db = firebase.firestore();
 
 export default class SignUp extends React.Component {

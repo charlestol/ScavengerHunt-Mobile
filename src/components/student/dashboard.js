@@ -1,11 +1,11 @@
 import React from 'react'
 import { StyleSheet, Platform, Image, Text, View, Button } from 'react-native'
-import firebase from 'firebase';
-import CreateSH from '../components/CreateSH';
-import ListEvent from '../components/ListEvent';
-require('../config')
+import SearchEvent from './eventSearch';
+import UserEventHistory from './eventHistory';
+import firebase from 'firebase/app';
+require('../../config')
 
-export default class InstructorDash extends React.Component {
+export default class StudentDash extends React.Component {
   state = { currentUser: null }
 
   componentDidMount() {
@@ -16,7 +16,6 @@ export default class InstructorDash extends React.Component {
   handleSignout = () => {
     firebase.auth().signOut().then(function() {
   // Sign-out successful.
-  this.props.navigation.navigate('Login')
 }).catch(function(error) {
   // An error happened.
 });
@@ -26,12 +25,12 @@ render() {
     const { currentUser } = this.state
 return (
       <View style={styles.container}>
-        <Text>Instructor Dashboard</Text>
+        <Text>Student Dashboard</Text>
         <Text>
           Hi {currentUser && currentUser.email}!
         </Text>
-        <CreateSH/>
-        <ListEvent/>
+        <SearchEvent />
+        <UserEventHistory/>
         <Button title="sign out" onPress={this.handleSignout}></Button>
       </View>
     )

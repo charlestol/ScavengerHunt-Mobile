@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react';  
 import { View, Text } from 'react-native';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import 'firebase/firestore'
-require('../config')
+require('../../config')
 const db = firebase.firestore();
 
-export default class ListEvent extends Component {  
+export default class UserEventHistory extends Component {  
+
     state = { scavengerHunts: [] };
 
     componentDidMount() {
@@ -14,8 +15,7 @@ export default class ListEvent extends Component {
         return;
       }  
         
-        
-      unsubscribe = db.collection('scavengerHunts').where("email", "==", user.email)
+      unsubscribe = db.collection('users').doc(user.email).collection('history')
       .onSnapshot(snapshot => {
         let scavengerHunts = [];
 
@@ -32,17 +32,18 @@ export default class ListEvent extends Component {
     componentWillUnmount() {
       this.unsubscribe();
     }
-    render() {
-        const { scavengerHunts } = this.state;
-      return (
-        <View>
-          <Text>List Event</Text>
-          {scavengerHunts.map(scavengerHunt => (
+
+  render() {
+    const { scavengerHunts } = this.state;
+    return (
+      <View>
+        <Text>User Event History</Text>
+        {scavengerHunts.map(scavengerHunt => (
             <View key={scavengerHunt.accessCode}>
               <Text>{scavengerHunt.name}</Text>
             </View>
             ))}
-        </View>
-      );
-    }
+      </View>
+    );
   }
+}

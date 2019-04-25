@@ -1,9 +1,9 @@
 import React, { Component } from 'react';  
 import { View, Text, TextInput, StyleSheet, Alert, Button } from 'react-native';
-import JoinEvent from './JoinEvent';
-import firebase from 'firebase';
+import JoinEvent from './eventJoin';
+import firebase from 'firebase/app'
 import 'firebase/firestore'
-require('../config')
+require('../../config')
 const db = firebase.firestore();
 
 const ERROR_DOES_NOT_EXIST = "Invalid access code entered. Either the event has ended, it was mis-typed or it does not exist. Contact your instructor for verification."

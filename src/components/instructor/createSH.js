@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Alert, Button, View, Text, StyleSheet, TextInput } from 'react-native';
 import TimePicker from 'react-native-simple-time-picker';
 import DatePicker from 'react-native-datepicker'
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import 'firebase/firestore'
-require('../config')
+require('../../config')
 const db = firebase.firestore();
 
 export default class CreateSH extends Component {  

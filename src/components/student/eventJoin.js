@@ -1,8 +1,8 @@
 import React, { Component } from 'react';  
 import { View, Text, Alert, Button } from 'react-native';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import 'firebase/firestore'
-require('../config')
+require('../../config')
 const db = firebase.firestore();
 
 export default class JoinEvent extends Component {  
