@@ -15,7 +15,7 @@ export default class UserEventHistory extends Component {
         return;
       }  
         
-      unsubscribe = db.collection('users').doc(user.email).collection('history')
+      db.collection('users').doc(user.email).collection('history')
       .onSnapshot(snapshot => {
         let scavengerHunts = [];
 
@@ -27,10 +27,6 @@ export default class UserEventHistory extends Component {
           scavengerHunts
         });
       });})
-    }
-
-    componentWillUnmount() {
-      this.unsubscribe();
     }
 
   render() {
