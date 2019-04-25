@@ -26,7 +26,8 @@ export default class UserEventHistory extends Component {
         this.setState({
           scavengerHunts
         });
-      });})
+      });
+      })
     }
 
   render() {
