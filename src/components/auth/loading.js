@@ -16,7 +16,7 @@ export default class Loading extends React.Component {
         db.collection('users').doc(user.email).get()
         .then(doc => {
           const role = doc.data().role
-          this.props.navigation.navigate(role === "STUDENT" ? 'Student' : 'Instructor')
+          this.props.navigation.navigate(role==="STUDENT" ? 'Student':'Instructor')
         })
       }
     })

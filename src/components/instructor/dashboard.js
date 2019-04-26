@@ -10,6 +10,7 @@ export default class InstructorDash extends React.Component {
   componentDidMount() {
       const { currentUser } = firebase.auth()
       this.setState({ currentUser })
+      console.log(this.props)
   }
 
   handleSignout = () => {
@@ -30,7 +31,7 @@ return (
           Hi {currentUser && currentUser.email}!
         </Text>
         {/* <CreateSH/> */}
-        <ListEvent/>
+        <ListEvent navigation={this.props.navigation} />
         <Button title="sign out" onPress={this.handleSignout}></Button>
       </View>
     )

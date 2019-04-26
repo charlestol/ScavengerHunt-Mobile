@@ -8,8 +8,17 @@ require('../../config')
 const db = firebase.firestore();
 
 export default class CreateSH extends Component {  
-    state = { name: '', accessCode: '', dateStart: null, dateEnd: null, instructions: '', selectedStartHours: 0,
-    selectedStartMinutes: 0, selectedEndHours: 0, selectedEndMinutes: 0}
+    state = {
+      name: '',
+      accessCode: '',
+      closed: false,
+      dateStart: null,
+      dateEnd: null,
+      description: '',
+      courses: '',
+      error: null,
+      dateError: null
+  }
 
     onCreateEvent = () => {
       const {name, accessCode, dateStart, dateEnd, instructions, selectedStartHours,
