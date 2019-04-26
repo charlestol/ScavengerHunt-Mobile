@@ -1,13 +1,14 @@
 import React, { Component } from 'react';  
 import { View, Text, StyleSheet, Button } from 'react-native';
 import CreateTask from './taskCreate';
+import { withNavigation } from 'react-navigation';
 import firebase from 'firebase/app';
 import 'firebase/firestore'
 
 require('../../config')
 const db = firebase.firestore();
 
-export default class ListTask extends Component {  
+class ListTask extends Component {  
     state = {tasks: []}
 
     componentDidMount() {
@@ -27,7 +28,6 @@ export default class ListTask extends Component {
           });
     }
 
-
   render() {
     //   console.log('list')
     let ac = this.props.navigation.state.params.accessCode
@@ -35,7 +35,7 @@ export default class ListTask extends Component {
     return (
       <View style={styles.container}>
         {/* <Text>Task List</Text> */}
-        <CreateTask />
+        <CreateTask ac={ac}/>
         <Text>Task List</Text>
         {tasks.map(task => (
             <Text key={task.name}>
@@ -54,6 +54,8 @@ export default class ListTask extends Component {
     );
   }
 }
+
+export default withNavigation(ListTask)
 
 const styles = StyleSheet.create({
     container: {

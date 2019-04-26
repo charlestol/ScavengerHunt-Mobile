@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet, Platform, Image, Text, View, Button } from 'react-native'
 import firebase from 'firebase/app';
 import ListEvent from './eventList';
+import CreateSH from './eventCreate';
 require('../../config')
 
 export default class InstructorDash extends React.Component {
