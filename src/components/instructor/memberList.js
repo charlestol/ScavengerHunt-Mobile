@@ -1,12 +1,21 @@
 import React, { Component } from 'react';  
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
 
 export default class ListMember extends Component {  
   render() {
     //   console.log('list')
+    let ac = this.props.navigation.state.params.accessCode
     return (
       <View style={styles.container}>
         <Text>Member List</Text>
+        <Button
+            title='Back'
+            onPress={() => {
+            this.props.navigation.navigate('IEventItem', {
+                accessCode: ac
+            })
+            }}
+        />
       </View>
     );
   }

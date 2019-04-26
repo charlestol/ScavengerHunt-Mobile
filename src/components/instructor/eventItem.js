@@ -31,7 +31,9 @@ export default class EventItem extends Component {
                 <Button
                   title='Members'
                   onPress={() => {
-                    this.props.navigation.navigate('IMemberList')
+                    this.props.navigation.navigate('IMemberList', {
+                      accessCode: sh.accessCode
+                    })
                   }}
                 />
                  <Button
