@@ -11,9 +11,9 @@ export default class ListMember extends Component {
         <Button
             title='Back'
             onPress={() => {
-            this.props.navigation.navigate('IEventItem', {
-                accessCode: ac
-            })
+                this.props.navigation.navigate('IEventItem', {
+                    accessCode: ac
+                })
             }}
         />
       </View>
