@@ -28,7 +28,7 @@ export default class JoinEvent extends Component {
             name: `${user.firstName} ${user.lastName}`,
             studentID: user.studentID,
           }
-        console.log(user)
+        // console.log(user)
         // save user in event members collection
         db.collection('scavengerHunts').doc(ac).collection('members').doc(user.email).set(userData)
             .then(() => {

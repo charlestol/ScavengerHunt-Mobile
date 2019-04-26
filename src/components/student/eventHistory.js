@@ -1,11 +1,12 @@
 import React, { Component } from 'react';  
 import { View, Text, Button } from 'react-native';
+import { withNavigation } from 'react-navigation';
 import firebase from 'firebase/app';
 import 'firebase/firestore'
 require('../../config')
 const db = firebase.firestore();
 
-export default class UserEventHistory extends Component {  
+class EventHistory extends Component {  
 
     state = { scavengerHunts: [] };
 
@@ -51,3 +52,5 @@ export default class UserEventHistory extends Component {
     );
   }
 }
+
+export default withNavigation(EventHistory)
