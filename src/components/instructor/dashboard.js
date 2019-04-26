@@ -31,7 +31,7 @@ return (
           Hi {currentUser && currentUser.email}!
         </Text>
         {/* <CreateSH/> */}
-        <ListEvent navigation={this.props.navigation} />
+        <ListEvent />
         <Button title="sign out" onPress={this.handleSignout}></Button>
       </View>
     )
