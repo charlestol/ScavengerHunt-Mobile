@@ -10,7 +10,7 @@ export default class EventItem extends Component {
 
     componentDidMount() {
         let ac = this.props.navigation.state.params.accessCode
-        console.log(this.props.navigation.state.params.accessCode)
+        // console.log(this.props.navigation.state.params.accessCode)
         db.collection("scavengerHunts").doc(ac).get()
         .then(doc => {
             const data = doc.data();
@@ -28,11 +28,19 @@ export default class EventItem extends Component {
               <View>
                 <Text>{sh.name}</Text>
                 {/* <DashNav /> */}
+                <Text>Members</Text>
                 <Button
-                title='Back'
-                onPress={() => {
-                  this.props.navigation.navigate('Instructor')
-                }}
+                  title='Members'
+                  onPress={() => {
+                    this.props.navigation.navigate('IMemberList')
+                  }}
+                />
+                <Text>Tasks</Text>
+                <Button
+                  title='Back'
+                  onPress={() => {
+                    this.props.navigation.navigate('Instructor')
+                  }}
               />
               </View>
             }
