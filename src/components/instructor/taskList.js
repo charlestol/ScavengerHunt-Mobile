@@ -1,5 +1,6 @@
 import React, { Component } from 'react';  
 import { View, Text, StyleSheet, Button } from 'react-native';
+import CreateTask from './taskCreate';
 import firebase from 'firebase/app';
 import 'firebase/firestore'
 
@@ -33,6 +34,8 @@ export default class ListTask extends Component {
     const { tasks } = this.state;
     return (
       <View style={styles.container}>
+        {/* <Text>Task List</Text> */}
+        <CreateTask />
         <Text>Task List</Text>
         {tasks.map(task => (
             <Text key={task.name}>
