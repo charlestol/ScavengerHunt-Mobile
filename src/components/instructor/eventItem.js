@@ -28,14 +28,18 @@ export default class EventItem extends Component {
               <View>
                 <Text>{sh.name}</Text>
                 {/* <DashNav /> */}
-                <Text>Members</Text>
                 <Button
                   title='Members'
                   onPress={() => {
                     this.props.navigation.navigate('IMemberList')
                   }}
                 />
-                <Text>Tasks</Text>
+                 <Button
+                  title='Tasks'
+                  onPress={() => {
+                    this.props.navigation.navigate('ITaskList')
+                  }}
+                />
                 <Button
                   title='Back'
                   onPress={() => {
