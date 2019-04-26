@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
 import firebase from 'firebase/app';
+import { withNavigation } from 'react-navigation';
+
 import 'firebase/firestore'
 require('../../config')
 const db = firebase.firestore();
 
-export default class ListEvent extends Component {  
+class ListEvent extends Component {  
     state = { scavengerHunts: [] };
 
     componentDidMount() {
@@ -50,3 +52,5 @@ export default class ListEvent extends Component {
       );
     }
   }
+
+  export default withNavigation(ListEvent)
