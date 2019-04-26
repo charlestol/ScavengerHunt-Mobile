@@ -5,7 +5,7 @@ import 'firebase/firestore'
 require('../../config')
 const db = firebase.firestore();
 // import ListTasks from './taskList';
-// import EventResults from './eventResults';
+import EventResults from './eventResults';
 
 export default class EventItem extends Component {
   state = { 
@@ -67,7 +67,7 @@ export default class EventItem extends Component {
             {closed && 
               <Text>This event has ended</Text>
             }
-            {/* <EventResults email={authUser.email} /> */}
+            <EventResults navigation={this.props.navigation} />
             {notStarted && <Text>The event has not started</Text>}
             {/* {!notStarted && <ListTasks email={authUser.email} />} */}
           </View>

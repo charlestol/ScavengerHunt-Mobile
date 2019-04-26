@@ -8,6 +8,7 @@ import Login from './src/components/auth/login'
 
 import Student from './src/components/student/dashboard'
 import SEventItem from './src/components/student/eventItem'
+import SEventResults from './src/components/student/eventResults'
 
 import Instructor from './src/components/instructor/dashboard'
 import IEventItem from './src/components/instructor/eventItem'

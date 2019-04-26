@@ -12,6 +12,9 @@ export default class JoinEvent extends Component {
     // get user signed in
     firebase.auth().onAuthStateChanged(user => {
         // get user info from db
+        if(user === null) {
+          return;
+        }  
         db.collection('users').doc(user.email).get()
         .then(doc => {
           // user document data
