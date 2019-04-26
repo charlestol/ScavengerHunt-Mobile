@@ -28,7 +28,7 @@ export default class ListMember extends Component {
 
   render() {
     //   console.log('list')
-    // let ac = this.props.navigation.state.params.accessCode
+    let ac = this.props.navigation.state.params.accessCode
     const { members } = this.state;
     return (
       <View style={styles.container}>
@@ -45,7 +45,7 @@ export default class ListMember extends Component {
                     accessCode: ac
                 })
             }}
-        />
+        />  
       </View>
     );
   }
