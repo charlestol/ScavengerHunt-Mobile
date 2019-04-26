@@ -1,5 +1,5 @@
 import React, { Component } from 'react';  
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
 import firebase from 'firebase/app';
 import 'firebase/firestore'
 require('../../config')
@@ -37,7 +37,14 @@ export default class UserEventHistory extends Component {
         <Text>User Event History</Text>
         {scavengerHunts.map(scavengerHunt => (
             <View key={scavengerHunt.accessCode}>
-              <Text>{scavengerHunt.name}</Text>
+              <Button
+                title={scavengerHunt.name}
+                onPress={() => {
+                  this.props.navigation.navigate('SEventItem', {
+                    accessCode: scavengerHunt.accessCode,
+                  })
+                }}
+              />
             </View>
             ))}
       </View>
