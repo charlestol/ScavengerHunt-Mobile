@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
 import firebase from 'firebase/app';
 import 'firebase/firestore'
 require('../../config')
@@ -28,6 +28,12 @@ export default class EventItem extends Component {
               <View>
                 <Text>{sh.name}</Text>
                 {/* <DashNav /> */}
+                <Button
+                title='Back'
+                onPress={() => {
+                  this.props.navigation.navigate('Instructor')
+                }}
+              />
               </View>
             }
           </View>

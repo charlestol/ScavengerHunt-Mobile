@@ -8,6 +8,7 @@ import Login from './src/components/auth/login'
 import Student from './src/components/student/dashboard'
 import Instructor from './src/components/instructor/dashboard'
 import IEventItem from './src/components/instructor/eventItem'
+import IEventList from './src/components/instructor/eventList'
 
 // create our app's navigation stack
 const App = createAppContainer(createSwitchNavigator(
@@ -17,7 +18,8 @@ const App = createAppContainer(createSwitchNavigator(
     Login,
     Student,
     Instructor,
-    IEventItem
+    IEventItem,
+    IEventList
   },
   {
     initialRouteName: 'Loading'
