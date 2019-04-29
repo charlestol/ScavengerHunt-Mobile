@@ -1,6 +1,6 @@
 import React, { Component } from 'react';  
 import { View, Text, StyleSheet, Button, Image } from 'react-native';
-// import GiveScore from './scoreTask';
+import GiveScore from './scoreTask';
 
 import firebase from 'firebase/app';
 import 'firebase/firestore'
@@ -74,7 +74,7 @@ export default class Submission extends Component {
                 <Text>{submission}</Text>
             </View>
         }
-        {/* <GiveScore ac={ac} email={email} task={task} /> */}
+        <GiveScore ac={ac} email={email} task={task} />
         <Button
             title='Back'
             onPress={() => {
