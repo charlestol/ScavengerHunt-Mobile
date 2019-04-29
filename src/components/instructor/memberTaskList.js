@@ -1,12 +1,13 @@
 import React, { Component } from 'react';  
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
+import { withNavigation } from 'react-navigation';
 import firebase from 'firebase/app';
 import 'firebase/firestore'
 
 require('../../config')
 const db = firebase.firestore();
 
-export default class CompletionList extends Component {  
+class CompletionList extends Component {  
     state = {
         tasksCompleted: [],
         tasksInProgess: []
@@ -52,6 +53,7 @@ export default class CompletionList extends Component {
     
   render() {
     const { tasksCompleted, tasksInProgess } = this.state;
+    let ac = this.props.ac
 
     return (
       <View>
@@ -59,9 +61,18 @@ export default class CompletionList extends Component {
         <Text>Tasks Completed</Text>
         {tasksCompleted.map(task => (
             <View key={task}>
-                <Text>{task}</Text>
+              <Button
+                title={task}
+                onPress={() => {
+                  this.props.navigation.navigate('IMemberSubmission', {
+                    accessCode: ac,
+                    // email: member.email
+                  })
+                }}
+              />
             </View>
-        ))}
+          ))}
+
         <Text>Tasks In-Progress</Text>
         {tasksInProgess.map(task => (
             <View key={task}>
@@ -72,3 +83,5 @@ export default class CompletionList extends Component {
     );
   }
 }
+
+export default withNavigation(CompletionList)
