@@ -49,7 +49,7 @@ class ListEvent extends Component {
                 }}
               />
             </View>
-            ))}
+          ))}
         </View>
       );
     }

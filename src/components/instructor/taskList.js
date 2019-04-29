@@ -1,6 +1,7 @@
 import React, { Component } from 'react';  
 import { View, Text, StyleSheet, Button } from 'react-native';
 import CreateTask from './taskCreate';
+// import TaskItem from './taskItem';
 import { withNavigation } from 'react-navigation';
 import firebase from 'firebase/app';
 import 'firebase/firestore'
@@ -38,10 +39,18 @@ class ListTask extends Component {
         <CreateTask ac={ac}/>
         <Text>Task List</Text>
         {tasks.map(task => (
-            <Text key={task.name}>
-                {task.name}
-            </Text>
-        ))}
+            <View key={task.name}>
+              <Button
+                title={task.name}
+                onPress={() => {
+                  this.props.navigation.navigate('ITaskItem', {
+                    accessCode: ac, 
+                    name: task.name
+                  })
+                }}
+              />
+            </View>
+          ))}
         <Button
             title='Back'
             onPress={() => {
