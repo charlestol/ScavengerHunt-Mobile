@@ -12,7 +12,6 @@ export default class SearchEvent extends Component {
   state = {accessCode: '', scavengerHunt: null, closed: false, error: null} 
   
   onSearch = () => {
-    Alert.alert('Searching Event');
     const { accessCode } = this.state
 
     db.collection('scavengerHunts').doc(accessCode).get()

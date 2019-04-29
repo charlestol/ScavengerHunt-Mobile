@@ -1,11 +1,13 @@
 import React, { Component } from 'react';  
 import { View, Text, Alert, Button, StyleSheet } from 'react-native';
+import { withNavigation } from 'react-navigation'
+
 import firebase from 'firebase/app';
 import 'firebase/firestore'
 require('../../config')
 const db = firebase.firestore();
 
-export default class EventResults extends Component {
+class EventResults extends Component {
     state = { score: null, feedback: null }
 
     componentDidMount() {
@@ -48,3 +50,5 @@ export default class EventResults extends Component {
         )
     }
 }
+
+export default withNavigation(EventResults)
