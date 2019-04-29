@@ -54,7 +54,8 @@ class CompletionList extends Component {
   render() {
     const { tasksCompleted, tasksInProgess } = this.state;
     let ac = this.props.ac
-
+    let email = this.props.email
+    
     return (
       <View>
         <Text>Completion List</Text>
@@ -66,7 +67,7 @@ class CompletionList extends Component {
                 onPress={() => {
                   this.props.navigation.navigate('IMemberSubmission', {
                     accessCode: ac,
-                    // email: member.email
+                    email: email
                   })
                 }}
               />
