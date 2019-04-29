@@ -34,10 +34,17 @@ export default class ListMember extends Component {
       <View style={styles.container}>
         <Text>Member List</Text>
         {members.map(member => (
-            <Text key={member.email}>
-                {member.name}
-            </Text>
-        ))}
+            <View key={member.email}>
+              <Button
+                title={member.name}
+                onPress={() => {
+                  this.props.navigation.navigate('IMemberInfo', {
+                    accessCode: ac
+                  })
+                }}
+              />
+            </View>
+          ))}
         <Button
             title='Back'
             onPress={() => {

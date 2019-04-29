@@ -12,6 +12,7 @@ import IEventList from './src/components/instructor/eventList'
 import IMemberList from './src/components/instructor/memberList'
 import ITaskList from './src/components/instructor/taskList'
 import ITaskItem from './src/components/instructor/taskItem'
+import IMemberInfo from './src/components/instructor/memberInfo'
 
 // create our app's navigation stack
 const App = createAppContainer(createSwitchNavigator(
@@ -25,7 +26,8 @@ const App = createAppContainer(createSwitchNavigator(
     IEventList,
     IMemberList,
     ITaskList,
-    ITaskItem
+    ITaskItem,
+    IMemberInfo
   },
   {
     initialRouteName: 'Loading'
