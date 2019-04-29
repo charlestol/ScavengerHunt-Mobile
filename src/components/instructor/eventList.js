@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
 import firebase from 'firebase/app';
+import { withNavigation } from 'react-navigation';
+
 import 'firebase/firestore'
 require('../../config')
 const db = firebase.firestore();
 
-export default class ListEvent extends Component {  
+class ListEvent extends Component {  
     state = { scavengerHunts: [] };
 
     componentDidMount() {
@@ -15,7 +17,7 @@ export default class ListEvent extends Component {
       }  
         
         
-      db.collection('scavengerHunts').where("email", "==", user.email)
+      unsubscribe = db.collection('scavengerHunts').where("email", "==", user.email)
       .onSnapshot(snapshot => {
         let scavengerHunts = [];
 
@@ -28,7 +30,9 @@ export default class ListEvent extends Component {
         });
       });})
     }
-
+    componentWillUnmount() {
+      this.unsubscribe
+  }
     render() {
         const { scavengerHunts } = this.state;
       return (
@@ -45,8 +49,10 @@ export default class ListEvent extends Component {
                 }}
               />
             </View>
-            ))}
+          ))}
         </View>
       );
     }
   }
+
+  export default withNavigation(ListEvent)

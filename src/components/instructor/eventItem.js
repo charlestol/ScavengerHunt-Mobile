@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
 import firebase from 'firebase/app';
 import 'firebase/firestore'
 require('../../config')
@@ -10,7 +10,7 @@ export default class EventItem extends Component {
 
     componentDidMount() {
         let ac = this.props.navigation.state.params.accessCode
-        console.log(this.props.navigation.state.params.accessCode)
+        // console.log(this.props.navigation.state.params.accessCode)
         db.collection("scavengerHunts").doc(ac).get()
         .then(doc => {
             const data = doc.data();
@@ -28,6 +28,28 @@ export default class EventItem extends Component {
               <View>
                 <Text>{sh.name}</Text>
                 {/* <DashNav /> */}
+                <Button
+                  title='Members'
+                  onPress={() => {
+                    this.props.navigation.navigate('IMemberList', {
+                      accessCode: sh.accessCode
+                    })
+                  }}
+                />
+                 <Button
+                  title='Tasks'
+                  onPress={() => {
+                    this.props.navigation.navigate('ITaskList', {
+                      accessCode: sh.accessCode
+                    })
+                  }}
+                />
+                <Button
+                  title='Back'
+                  onPress={() => {
+                    this.props.navigation.navigate('Instructor')
+                  }}
+              />
               </View>
             }
           </View>
