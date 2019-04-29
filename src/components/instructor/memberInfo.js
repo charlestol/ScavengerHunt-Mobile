@@ -1,5 +1,6 @@
 import React, { Component } from 'react';  
 import { View, Text, StyleSheet, Button } from 'react-native';
+import MemTaskList from './memberTaskList';
 import firebase from 'firebase/app';
 import 'firebase/firestore'
 
@@ -29,8 +30,8 @@ export default class MemberInfo extends Component {
           <View>
             <Text>{memberInfo.name}</Text>
             <Text>{memberInfo.email}</Text>
-            {/* <TotalScore ac={ac} email={email} />
-            <MemTaskList /> */}
+            {/* <TotalScore ac={ac} email={email} /> */}
+            <MemTaskList ac={ac} email={email}/>
           </View>
         }
 
