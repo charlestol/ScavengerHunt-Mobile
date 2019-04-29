@@ -39,7 +39,8 @@ export default class ListMember extends Component {
                 title={member.name}
                 onPress={() => {
                   this.props.navigation.navigate('IMemberInfo', {
-                    accessCode: ac
+                    accessCode: ac,
+                    email: member.email
                   })
                 }}
               />
