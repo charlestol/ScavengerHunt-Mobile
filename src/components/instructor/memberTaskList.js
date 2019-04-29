@@ -67,7 +67,8 @@ class CompletionList extends Component {
                 onPress={() => {
                   this.props.navigation.navigate('IMemberSubmission', {
                     accessCode: ac,
-                    email: email
+                    email: email,
+                    task: task
                   })
                 }}
               />
