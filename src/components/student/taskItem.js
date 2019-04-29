@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Button } from 'react-native'
+import { View, Text, Button, StyleSheet } from 'react-native'
 import { withNavigation } from 'react-navigation'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
@@ -31,7 +31,7 @@ class TaskItem extends Component {
     render() {
         const {task} = this.state;
         return (
-            <View>
+            <View style={styles.container} >
                 <Text>Task: {task.name}</Text>
                 <Text>instructions: {task.instructions}</Text>
                 <Text>Submission Type: {task.entryType}</Text>
@@ -43,3 +43,12 @@ class TaskItem extends Component {
 }
 
 export default withNavigation(TaskItem)
+
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center'
+    }
+  })

@@ -157,11 +157,11 @@ export default class Submit extends Component {
         });
     }
 
-    onChangeText = event => {
-        this.setState({ [event.target.name]: event.target.value });
-    };
+    // onChangeText = () => {
+    //     this.setState({ textEntry: event.target.value });
+    // };
 
-    onChangeImage = event => {
+    onChangeImage = () => {
         if(event.target.files[0]) {
             const image = event.target.files[0]
             this.setState({ image })
@@ -182,9 +182,7 @@ export default class Submit extends Component {
                 {this.props.task.entryType==="text" && !closed &&
                     <View> 
                         <TextInput
-                            name="textEntry"
-                            value={textEntry}
-                            onChange={this.onChangeText}
+                            onChange={textEntry => this.setState({ textEntry })}
                             type="text"
                             placeholder="Type Here"
                         />
@@ -204,21 +202,23 @@ export default class Submit extends Component {
                 {this.props.task.entryType==="image" && !closed &&
                     <View> 
                         {/* <progress value={progress} max="100" /> */}
-                        <TextInput
+                        {/* <TextInput
                             onChange={this.onChangeImage}
                             type="file"
-                        />
+                        /> */}
                        <Button 
                             disabled={noImage} 
                             title="Submit" 
                             onPress={() => this.onSubmitImage()} 
                         />
                         {/* Preview the image that was just uploaded */}
-                        {submitted && <Image src={imageURL} alt="Uploaded Images" height="300" width="400" />}
+                        {submitted && <Image source={{uri: imageURL}} style={{height:100, width:100}} />}
                     </View>
                 }
-                <ViewSubmission email={authUser.email} />
+                {/* <ViewSubmission email={authUser.email} /> */}
             </View>
         )
     }
 }
+
+

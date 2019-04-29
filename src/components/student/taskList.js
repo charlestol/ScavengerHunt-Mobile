@@ -1,11 +1,12 @@
 import React, { Component } from 'react';  
 import { View, Text, TextInput, StyleSheet, Alert, Button } from 'react-native';
+import { withNavigation } from 'react-navigation'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 require('../../config')
 const db = firebase.firestore();
 
-export default class TaskList extends Component {
+class TaskList extends Component {
   state = {
     tasks: [],
     completed: []
@@ -62,7 +63,7 @@ export default class TaskList extends Component {
               title={task}
               onPress={() => {
                 this.props.navigation.navigate('STaskItem', {
-                  accessCode: scavengerHunt.accessCode,
+                  accessCode: this.props.accessCode,
                   taskName: task
                 })
               }}
@@ -76,7 +77,7 @@ export default class TaskList extends Component {
               title={task}
               onPress={() => {
                 this.props.navigation.navigate('STaskItem', {
-                  accessCode: scavengerHunt.accessCode,
+                  accessCode: this.props.accessCode,
                   taskName: task
                 })
               }}
@@ -87,3 +88,4 @@ export default class TaskList extends Component {
     )
   }
 }
+export default withNavigation(TaskList)
