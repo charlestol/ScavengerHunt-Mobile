@@ -21,7 +21,7 @@ class ActiveEvents extends Component {
       if(user === null) {
           return
       }  
-      db.doc(`users/${user.email}`).collection("history").where("dateEnd", ">", today)
+      this.unsubscribe = db.doc(`users/${user.email}`).collection("history").where("dateEnd", ">", today)
         .onSnapshot(snapshot => {
           let activeEvents = []
 
@@ -41,7 +41,9 @@ class ActiveEvents extends Component {
     })
   }
 
-
+  componentWillUnmount() {
+    this.unsubscribe()
+  }
 
   render() {
     const { activeEvents } = this.state;

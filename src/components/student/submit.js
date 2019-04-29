@@ -5,7 +5,7 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 require('../../config')
 const db = firebase.firestore()
-// import ViewSubmission from './viewSubmission'
+import ViewSubmission from './viewSubmission'
 
 const SUCCESS_MSG = "Submitted!"
 const ERROR_MSG = "Error, try submitting again."
@@ -25,7 +25,7 @@ export default class Submit extends Component {
 
     componentDidMount() {
         let accessCode = this.props.ac
-
+        // console.log(this.props)
         // on componentDidMount, if the event has ended, close submissions by no rendering the submission elements
         db.doc(`scavengerHunts/${accessCode}`).get()
         .then(doc => {
@@ -61,7 +61,7 @@ export default class Submit extends Component {
         // grabbing the access code from the route
         let accessCode = this.props.ac
         // getting the task information from the task parent
-        let task = this.props.task.name
+        let task = this.props.task
 
         firebase.auth().onAuthStateChanged(user => {
             if(user === null) {
@@ -101,7 +101,7 @@ export default class Submit extends Component {
         // grabbing the access code from the route
         let accessCode = this.props.ac;
         // getting the task information from the task parent
-        let task = this.props.task.name;
+        let task = this.props.task;
 
         // prepare image to be store to this storage path
         const uploadTask = firebase.store.ref(`${accessCode}/${task}/${image.name}`).put(image);
@@ -161,13 +161,13 @@ export default class Submit extends Component {
     //     this.setState({ textEntry: event.target.value });
     // };
 
-    onChangeImage = () => {
-        if(event.target.files[0]) {
-            const image = event.target.files[0]
-            this.setState({ image })
-            console.log(image);
-        }
-    }
+    // onChangeImage = () => {
+    //     if(event.target.files[0]) {
+    //         const image = event.target.files[0]
+    //         this.setState({ image })
+    //         console.log(image);
+    //     }
+    // }
 
     render() {
         const {
@@ -176,6 +176,11 @@ export default class Submit extends Component {
 
         const noImage = image === null;
         const noText = textEntry === '';
+
+        // grabbing the access code from the route
+        let accessCode = this.props.ac
+        // getting the task information from the task parent
+        let task = this.props.task
 
         return (
             <View>
@@ -206,16 +211,16 @@ export default class Submit extends Component {
                             onChange={this.onChangeImage}
                             type="file"
                         /> */}
-                       <Button 
+                       {/* <Button 
                             disabled={noImage} 
                             title="Submit" 
                             onPress={() => this.onSubmitImage()} 
-                        />
+                        /> */}
                         {/* Preview the image that was just uploaded */}
                         {submitted && <Image source={{uri: imageURL}} style={{height:100, width:100}} />}
                     </View>
                 }
-                {/* <ViewSubmission email={authUser.email} /> */}
+                <ViewSubmission ac={accessCode} task={task} />
             </View>
         )
     }

@@ -16,7 +16,7 @@ class EventHistory extends Component {
         return;
       }  
         
-      db.collection('users').doc(user.email).collection('history')
+      this.unsubscribe = db.collection('users').doc(user.email).collection('history')
       .onSnapshot(snapshot => {
         let scavengerHunts = [];
 
@@ -29,6 +29,10 @@ class EventHistory extends Component {
         });
       });
       })
+    }
+
+    componentWillUnmount() {
+      this.unsubscribe()
     }
 
   render() {
