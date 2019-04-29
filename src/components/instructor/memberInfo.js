@@ -32,8 +32,7 @@ export default class MemberInfo extends Component {
           <View>
             <Text>{memberInfo.name}</Text>
             <Text>{memberInfo.email}</Text>
-            {/* <TotalScore ac={ac} email={email} /> */}
-            <TotalScore/>
+            <TotalScore ac={ac} email={email} />
             <MemTaskList ac={ac} email={email}/>
           </View>
         }
