@@ -12,6 +12,9 @@ export default class JoinEvent extends Component {
     // get user signed in
     firebase.auth().onAuthStateChanged(user => {
         // get user info from db
+        if(user === null) {
+          return;
+        }  
         db.collection('users').doc(user.email).get()
         .then(doc => {
           // user document data
@@ -25,7 +28,7 @@ export default class JoinEvent extends Component {
             name: `${user.firstName} ${user.lastName}`,
             studentID: user.studentID,
           }
-        console.log(user)
+        // console.log(user)
         // save user in event members collection
         db.collection('scavengerHunts').doc(ac).collection('members').doc(user.email).set(userData)
             .then(() => {

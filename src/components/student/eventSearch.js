@@ -12,13 +12,12 @@ export default class SearchEvent extends Component {
   state = {accessCode: '', scavengerHunt: null, closed: false, error: null} 
   
   onSearch = () => {
-    Alert.alert('Searching Event');
     const { accessCode } = this.state
 
     db.collection('scavengerHunts').doc(accessCode).get()
       .then(doc => {
         if (doc.exists) {
-          console.log("Document data:", doc.data());
+          // console.log("Document data:", doc.data());
           const sh = doc.data();
           const closed = sh.closed;
 
@@ -59,7 +58,7 @@ export default class SearchEvent extends Component {
 
   render() {
     const {accessCode, closed, scavengerHunt, error} = this.state;
-    
+    const disabled = accessCode==='';
     return (
       <View>
         <Text>Search Event</Text>
@@ -70,7 +69,7 @@ export default class SearchEvent extends Component {
           onChangeText={accessCode => this.setState({ accessCode })}
           value={this.state.accessCode}
         />
-        <Button title="Search" onPress={this.onSearch} />
+        <Button title="Search" onPress={this.onSearch} disabled={disabled} />
         {scavengerHunt && !closed &&
           <View>
             <Text>{scavengerHunt.name}</Text>

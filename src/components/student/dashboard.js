@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, Platform, Image, Text, View, Button } from 'react-native'
 import SearchEvent from './eventSearch';
+import ActiveEvents from './eventsActive';
 import UserEventHistory from './eventHistory';
 import firebase from 'firebase/app';
 require('../../config')
@@ -15,10 +16,10 @@ export default class StudentDash extends React.Component {
 
   handleSignout = () => {
     firebase.auth().signOut().then(function() {
-  // Sign-out successful.
-}).catch(function(error) {
-  // An error happened.
-});
+      // Sign-out successful.
+    }).catch(function(error) {
+      // An error happened.
+    });
   }
 
 render() {
@@ -30,7 +31,8 @@ return (
           Hi {currentUser && currentUser.email}!
         </Text>
         <SearchEvent />
-        <UserEventHistory/>
+        <ActiveEvents />
+        <UserEventHistory />
         <Button title="sign out" onPress={this.handleSignout}></Button>
       </View>
     )
