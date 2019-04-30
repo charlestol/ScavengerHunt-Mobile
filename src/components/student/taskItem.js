@@ -38,6 +38,14 @@ class TaskItem extends Component {
                 <Text>Submission Type: {task.entryType}</Text>
                 <Submit task={taskName} ac={ac} />
                 <TaskResult task={taskName} ac={ac} />
+                <Button
+                title={"back"}
+                onPress={() => {
+                  this.props.navigation.navigate('SEventItem', {
+                      accessCode: ac
+                  })
+                }}
+              />
             </View>
         );
     }
