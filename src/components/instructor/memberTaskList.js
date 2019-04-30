@@ -33,10 +33,7 @@ class CompletionList extends Component {
               let task = doc.data();
               tasks.push(task.name);
             });
-    
-            // console.log("Subs: ",tasksCompleted);
-            // console.log("tasks: ",tasks);
-    
+        
             tasks.forEach(task => {
               if(!tasksCompleted.includes(task)) {
                 tasksInProgess.push(task);

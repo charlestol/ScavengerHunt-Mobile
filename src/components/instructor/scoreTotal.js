@@ -73,10 +73,6 @@ export default class TotalScore extends Component {
         });
     }
 
-    onChange = event => {
-        this.setState({ [event.target.name]: event.target.value });
-    }
-
   render() {
     return (
       <View>
@@ -93,7 +89,6 @@ export default class TotalScore extends Component {
                 placeholder="Type Feedback Here"
                 autoCapitalize="none"
                 // style={styles.textInput}
-                onChangeText={this.onChange}
                 onChangeText={feedback => this.setState({ feedback })}
                 value={this.state.feedback}
             />
