@@ -15,7 +15,7 @@ export default class CreateSH extends Component {
       dateStart: null,
       dateEnd: null,
       description: '',
-      courses: '',
+      // courses: '',
       error: null,
       dateError: null
   }
@@ -46,14 +46,6 @@ export default class CreateSH extends Component {
     }
 
     render() {
-      const isInvalid = 
-            this.state.name === '' ||
-            this.state.accessCode === '' ||
-            this.state.description === '' ||
-            this.state.courses === '' ||
-            this.state.dateStart === null ||
-            this.state.dateEnd === null ||
-            this.state.dateError !== null;
         return (
         <View>
             <Text>Creating SH</Text>
@@ -142,7 +134,7 @@ export default class CreateSH extends Component {
                 onChangeText={instructions => this.setState({ instructions })}
                 value={this.state.instructions}
             />
-            <Button disabled={isInvalid} title="Create" onPress={this.onCreateEvent} />
+            <Button title="Create" onPress={this.onCreateEvent} />
         </View>
     );
   }

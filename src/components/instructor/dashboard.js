@@ -33,8 +33,8 @@ return (
           Hi {currentUser && currentUser.email}!
         </Text>
         <CreateSH/>
-        <ActiveEvents />
-        <ListEvent />
+        {/* <ActiveEvents />
+        <ListEvent /> */}
         <Button title="sign out" onPress={this.handleSignout}></Button>
       </View>
     )
