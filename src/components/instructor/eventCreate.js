@@ -15,7 +15,7 @@ export default class CreateSH extends Component {
       dateStart: null,
       dateEnd: null,
       description: '',
-      // courses: '',
+      courses: '',
       error: null,
       dateError: null
   }
@@ -133,6 +133,13 @@ export default class CreateSH extends Component {
                 placeholder="Event Instructions"
                 onChangeText={instructions => this.setState({ instructions })}
                 value={this.state.instructions}
+            />
+            <TextInput
+                style={styles.textInput}
+                autoCapitalize="none"
+                placeholder="Course(s) Participating"
+                onChangeText={courses => this.setState({ courses })}
+                value={this.state.courses}
             />
             <Button title="Create" onPress={this.onCreateEvent} />
         </View>
