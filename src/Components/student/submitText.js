@@ -36,17 +36,18 @@ class SubmitText extends Component {
                     email: user.email,
                     name: `${user.firstName} ${user.lastName}`,
                     studentID: user.studentID,
-                    textEntry,
+                    textEntry: textEntry,
                     taskName: task,
                 }
                 // save data in a task's submission collection
-                db.doc(`scavengerHunts/${accessCode}`).collection('tasks').doc(task).set(submitData)
+                db.doc(`scavengerHunts/${ac}`).collection('members').doc(user.email).collection('submissions').doc(task).set(submitData)
                 .then(() => {
                     // console.log("Submission Successful!");
                     Alert.alert(SUCCESS_MSG)
                     this.setState({
                         message: SUCCESS_MSG,
-                        submitted: true
+                        submitted: true, 
+                        textEntry: ''
                     })
                 })
                 .catch(function(error) {
@@ -62,36 +63,32 @@ class SubmitText extends Component {
 
     render() {
         const {
-            message, textEntry, image, progress, imageURL, submitted
+            message, textEntry, submitted
         } = this.state;
 
-        const noImage = image === null;
         const noText = textEntry === '';
 
         let task = this.props.navigation.state.params.task
         let ac = this.props.navigation.state.params.ac
 
         return (
-            <View>
-                {this.props.task.entryType==="text" &&
-                    <View> 
-                        <TextInput
-                            onChange={textEntry => this.setState({ textEntry })}
-                            type="text"
-                            placeholder="Type Here"
-                        />
-                        <Button 
-                            disabled={noText} 
-                            title="Submit" 
-                            onPress={() => this.onSubmitText()} 
-                        />
-                        {submitted && 
-                            <View>
-                                <Text>Submitted Text: </Text>
-                                <Text>{textEntry}</Text>
-                            </View>    
-                        }
-                    </View>
+            <View style={styles.container}>
+                <TextInput
+                    onChangeText={textEntry => this.setState({ textEntry })}
+                    value={textEntry}
+                    type="text"
+                    placeholder="Type Here"
+                />
+                <Button 
+                    disabled={noText} 
+                    title="Submit" 
+                    onPress={() => this.onSubmitText()} 
+                />
+                {submitted && 
+                    <View>
+                        <Text>Submitted Text: </Text>
+                        <Text>{textEntry}</Text>
+                    </View>    
                 }
             </View>
         )

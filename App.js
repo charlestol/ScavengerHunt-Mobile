@@ -31,6 +31,7 @@ const App = createAppContainer(createSwitchNavigator(
     Student,
     SEventItem,
     STaskItem,
+    SubmitText,
     SubmitImage,
     Instructor,
     IEventItem,
