@@ -5,7 +5,13 @@ import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 import Loading from './src/components/auth/loading'
 import SignUp from './src/components/auth/signUp'
 import Login from './src/components/auth/login'
+
 import Student from './src/components/student/dashboard'
+import SEventItem from './src/components/student/eventItem'
+import STaskItem from './src/components/student/taskItem'
+import SubmitImage from './src/components/student/submitImage'
+import SubmitText from './src/components/student/submitText'
+
 import Instructor from './src/components/instructor/dashboard'
 import IEventItem from './src/components/instructor/eventItem'
 import IEventList from './src/components/instructor/eventList'
@@ -15,6 +21,7 @@ import ITaskItem from './src/components/instructor/taskItem'
 import IMemberInfo from './src/components/instructor/memberInfo'
 import IMemberSubmission from './src/components/instructor/memberSubmission'
 
+
 // create our app's navigation stack
 const App = createAppContainer(createSwitchNavigator(
   {
@@ -22,6 +29,10 @@ const App = createAppContainer(createSwitchNavigator(
     SignUp,
     Login,
     Student,
+    SEventItem,
+    STaskItem,
+    SubmitText,
+    SubmitImage,
     Instructor,
     IEventItem,
     IEventList,
