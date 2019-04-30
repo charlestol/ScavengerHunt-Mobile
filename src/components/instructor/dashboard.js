@@ -13,7 +13,6 @@ export default class InstructorDash extends React.Component {
   componentDidMount() {
       const { currentUser } = firebase.auth()
       this.setState({ currentUser })
-      // console.log(this.props)
   }
 
   handleSignout = () => {

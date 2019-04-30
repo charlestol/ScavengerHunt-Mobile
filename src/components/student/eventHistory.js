@@ -1,11 +1,12 @@
 import React, { Component } from 'react';  
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
+import { withNavigation } from 'react-navigation';
 import firebase from 'firebase/app';
 import 'firebase/firestore'
 require('../../config')
 const db = firebase.firestore();
 
-export default class UserEventHistory extends Component {  
+class EventHistory extends Component {  
 
     state = { scavengerHunts: [] };
 
@@ -15,7 +16,7 @@ export default class UserEventHistory extends Component {
         return;
       }  
         
-      db.collection('users').doc(user.email).collection('history')
+      this.unsubscribe = db.collection('users').doc(user.email).collection('history')
       .onSnapshot(snapshot => {
         let scavengerHunts = [];
 
@@ -30,6 +31,10 @@ export default class UserEventHistory extends Component {
       })
     }
 
+    componentWillUnmount() {
+      this.unsubscribe()
+    }
+
   render() {
     const { scavengerHunts } = this.state;
     return (
@@ -37,10 +42,19 @@ export default class UserEventHistory extends Component {
         <Text>User Event History</Text>
         {scavengerHunts.map(scavengerHunt => (
             <View key={scavengerHunt.accessCode}>
-              <Text>{scavengerHunt.name}</Text>
+              <Button
+                title={scavengerHunt.name}
+                onPress={() => {
+                  this.props.navigation.navigate('SEventItem', {
+                    accessCode: scavengerHunt.accessCode,
+                  })
+                }}
+              />
             </View>
             ))}
       </View>
     );
   }
 }
+
+export default withNavigation(EventHistory)
