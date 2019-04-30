@@ -53,6 +53,10 @@ export default class CreateTask extends Component {
     }
   render() {
     //   console.log(accessCode)
+    const isInvalid = 
+            this.state.name === '' ||
+            this.state.instructions === '';
+
     return (
       <View>
         <Text>Create Task</Text>
@@ -79,7 +83,7 @@ export default class CreateTask extends Component {
             <Picker.Item label="Image" value="image" />
             <Picker.Item label="Text" value="text" />
         </Picker>
-        <Button title="Add Task" onPress={this.onCreateTask}/>
+        <Button title="Add Task" onPress={this.onCreateTask} disabled={isInvalid}/>
       </View>
     );
   }
