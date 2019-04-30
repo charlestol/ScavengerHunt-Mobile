@@ -18,23 +18,24 @@ export default class ViewSubmission extends Component {
             }  
             db.doc(`scavengerHunts/${ac}`).collection('members').doc(user.email).collection('submissions').doc(task).get()
             .then(doc => {
-                let submitData = doc.data();
-                let submission = '';
-                let type = '';
-            //    console.log('sub ',doc.data())
-                if(submitData.hasOwnProperty('textEntry')) {
-                    type = 'text';
-                    submission = submitData.textEntry;
-                } else if(submitData.hasOwnProperty('imageURL')) {
-                    type = 'image';
-                    submission = submitData.imageURL;
-                } 
-            
-                this.setState({
-                    type,
-                    submission,
-                });
-            
+                if(doc.exists) {
+                    let submitData = doc.data();
+                    let submission = '';
+                    let type = '';
+                // console.log('sub ',doc.data())
+                    if(submitData.hasOwnProperty('textEntry')) {
+                        type = 'text';
+                        submission = submitData.textEntry;
+                    } else if(submitData.hasOwnProperty('imageURL')) {
+                        type = 'image';
+                        submission = submitData.imageURL;
+                    } 
+                
+                    this.setState({
+                        type,
+                        submission,
+                    });
+                }
             })
         })
     }
