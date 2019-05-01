@@ -23,7 +23,7 @@ require('../../config')
 const db = firebase.firestore();
 
 export default class SignUp extends React.Component {
-  state = { email: '', password: '', userType: 'student', firstName: '', lastName: '', studentID: '', errorMessage: null }
+  state = { email: '', passwordOne: '',passwordTwo: '', userType: 'student', firstName: '', lastName: '', studentID: '', errorMessage: null }
 handleSignUp = () => {
   const {
         firstName,
@@ -31,12 +31,12 @@ handleSignUp = () => {
         studentID,
         userType,
         email,
-        password,
+        passwordOne,
         } = this.state;
   // TODO: Firebase stuff...
   firebase
       .auth()
-      .createUserWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(email, passwordOne)
       .then(() => {
         var user = firebase.auth().currentUser;
         // user.updateProfile({
@@ -89,6 +89,13 @@ onClickInstructor = () => {
 }
 
 render() {
+  const isInvalid =
+  this.state.passwordOne !== this.state.passwordTwo ||
+  this.state.passwordOne === '' ||
+  this.state.email === '' ||
+  this.state.firstName === '' ||
+  this.state.lastName === '';
+
     return (
       <Container >
       <Content>
@@ -166,13 +173,24 @@ render() {
             secureTextEntry
             autoCapitalize="none"
             style={styles.textInput}
-            onChangeText={password => this.setState({ password })}
-            value={this.state.password}
+            onChangeText={passwordOne => this.setState({ passwordOne })}
+            value={this.state.passwordOne}
+            />
+          </Item>
+          <Item floatingLabel last>
+            <Label>ReType Password</Label>
+            <Input
+            secureTextEntry
+            autoCapitalize="none"
+            style={styles.textInput}
+            onChangeText={passwordTwo => this.setState({ passwordTwo })}
+            value={this.state.passwordTwo}
             />
           </Item>
         </Form>
         
         <Button
+            disabled = {isInvalid}
             block
             onPress={this.handleSignUp} 
             style={styles.marginBtn}

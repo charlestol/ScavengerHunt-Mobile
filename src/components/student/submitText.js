@@ -1,5 +1,26 @@
 import React, { Component } from 'react'; 
-import { View, Text, TextInput, Alert, Button, StyleSheet, Image} from 'react-native'
+// import { View, Text, TextInput, Alert, Button, StyleSheet, Image} from 'react-native'
+import { View, StyleSheet, Alert  } from 'react-native';
+import {
+  Container,
+  Header,
+  Title,
+  Content,
+  Text,
+  Button,
+  Icon,
+  Footer,
+  FooterTab,
+  Left,
+  Right,
+  Body,
+  ListItem,
+  List,
+  H1,
+  Form,
+  Input,
+  Item
+} from "native-base";
 import { withNavigation } from 'react-navigation'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
@@ -72,25 +93,70 @@ class SubmitText extends Component {
         let ac = this.props.navigation.state.params.ac
 
         return (
-            <View style={styles.container}>
-                <TextInput
+
+
+
+    <Container style={styles.container}>
+            <Header>
+                <Left>
+                <Button 
+                transparent 
+                onPress={() => {
+                    this.props.navigation.navigate('STaskItem', {
+                        accessCode: ac,
+                        taskName: task
+                    })
+                }}
+                >
+                <Icon name="arrow-back" />
+                </Button>
+            </Left>
+            <Body>
+            <Title>Text Submission</Title>
+            </Body>
+            <Right>
+            </Right>
+        </Header>
+
+            <Content style={{margin:10}}>
+
+                {/* <H2 >Event Name</H2> */}
+                <Form
+                style={{marginBottom:10}}
+                >
+                <Item>
+                    <Input 
                     onChangeText={textEntry => this.setState({ textEntry })}
                     value={textEntry}
                     type="text"
                     placeholder="Type Here"
-                />
+                    />
+                </Item>
+                </Form>
+                {/* <TextInput
+                    onChangeText={textEntry => this.setState({ textEntry })}
+                    value={textEntry}
+                    type="text"
+                    placeholder="Type Here"
+                /> */}
                 <Button 
+
+                    block
                     disabled={noText} 
                     title="Submit" 
                     onPress={() => this.onSubmitText()} 
-                />
+                > 
+                <Text> 
+                    Submit
+                </Text>
+                </Button>
                 {submitted && 
                     <View>
                         <Text>Submitted Text: </Text>
                         <Text>{textEntry}</Text>
                     </View>    
                 }
-                <Button
+                {/* <Button
                     title={"back"}
                     onPress={() => {
                         this.props.navigation.navigate('STaskItem', {
@@ -98,8 +164,59 @@ class SubmitText extends Component {
                             taskName: task
                         })
                     }}
-                />
-            </View>
+                /> */}
+            </Content>
+
+        <Footer>
+            <FooterTab>
+            <Button
+            onPress={() => this.props.navigation.navigate('DashboardS')}
+            >
+                <Icon  name="home" />
+                <Text>Home</Text>
+            </Button>
+            <Button 
+                onPress={() => this.props.navigation.navigate('ProfileS')}
+            >
+                <Icon name="person" />
+                <Text>Profile</Text>
+            </Button>
+            </FooterTab>
+        </Footer>
+        </Container>
+
+
+
+
+
+            // <View style={styles.container}>
+            //     <TextInput
+            //         onChangeText={textEntry => this.setState({ textEntry })}
+            //         value={textEntry}
+            //         type="text"
+            //         placeholder="Type Here"
+            //     />
+            //     <Button 
+            //         disabled={noText} 
+            //         title="Submit" 
+            //         onPress={() => this.onSubmitText()} 
+            //     />
+            //     {submitted && 
+            //         <View>
+            //             <Text>Submitted Text: </Text>
+            //             <Text>{textEntry}</Text>
+            //         </View>    
+            //     }
+            //     <Button
+            //         title={"back"}
+            //         onPress={() => {
+            //             this.props.navigation.navigate('STaskItem', {
+            //                 accessCode: ac,
+            //                 taskName: task
+            //             })
+            //         }}
+            //     />
+            // </View>
         )
     }
 }
@@ -108,8 +225,8 @@ export default withNavigation(SubmitText)
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+        // flex: 1,
+        // justifyContent: 'center',
+        // alignItems: 'center'
     }
 })

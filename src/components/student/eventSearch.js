@@ -1,5 +1,31 @@
 import React, { Component } from 'react';  
-import { View, Text, TextInput, StyleSheet, Alert, Button } from 'react-native';
+// import { View, Text, TextInput, StyleSheet, Alert, Button } from 'react-native';
+import { StyleSheet, View, TextInput } from 'react-native'
+import {
+  Container,
+  Content,
+  Header,
+  Title,
+  Text,
+  Button,
+  Icon,
+  Footer,
+  FooterTab,
+  Left,
+  Right,
+  Body,
+  Form,
+  Item,
+  Label,
+  Input,
+  H2,
+  // View,
+  Badge,
+  Tab,
+  Tabs,
+  List,
+  ListItem
+} from "native-base";
 import JoinEvent from './eventJoin';
 import firebase from 'firebase/app'
 import 'firebase/firestore'
@@ -60,16 +86,54 @@ export default class SearchEvent extends Component {
     const {accessCode, closed, scavengerHunt, error} = this.state;
     const disabled = accessCode==='';
     return (
-      <View>
-        <Text>Search Event</Text>
-        <TextInput
+
+      <Container style={styles.container}>
+      <Header>
+      <Left>
+            <Button 
+              transparent 
+              onPress={() => this.props.navigation.navigate('Student')}
+              >
+              <Icon name="arrow-back" />
+            </Button>
+        </Left>
+        <Body>
+          <Title>Search</Title>
+        </Body>
+        <Right>
+        <Button
+            transparent
+            onPress={() => this.props.navigation.navigate('EventSearch')}
+          >
+            <Icon name="add" />
+          </Button>
+        </Right>
+      </Header>
+
+      <Content style={{margin:10}}>
+        <H2>Search Event</H2>
+        <Form
+        style={{marginBottom: 10, marginBottom: 10}}
+        >
+          <Item>
+            <Input 
+            onChangeText={accessCode => this.setState({ accessCode })}
+            value={this.state.accessCode}
+            placeholder="Input access code" 
+            />
+          </Item>
+        </Form>
+
+        {/* <TextInput
           style={styles.textInput}
           autoCapitalize="none"
           placeholder="Access Code"
           onChangeText={accessCode => this.setState({ accessCode })}
           value={this.state.accessCode}
-        />
-        <Button title="Search" onPress={this.onSearch} disabled={disabled} />
+        /> */}
+        <Button block onPress={this.onSearch} disabled={disabled} >
+        <Text>Search</Text>
+        </Button>
         {scavengerHunt && !closed &&
           <View>
             <Text>{scavengerHunt.name}</Text>
@@ -77,16 +141,53 @@ export default class SearchEvent extends Component {
           </View>
         }
         {error && <Text>{error}</Text>}
-      </View>
+      </Content>
+
+      <Footer>
+        <FooterTab>
+          <Button
+          onPress={() => this.props.navigation.navigate('DashboardS')}
+          >
+            <Icon  name="home" />
+            <Text>Home</Text>
+          </Button>
+          <Button 
+            onPress={() => this.props.navigation.navigate('ProfileS')}
+          >
+            <Icon name="person" />
+            <Text>Profile</Text>
+          </Button>
+        </FooterTab>
+      </Footer>
+    </Container>
+
+      // <View>
+      //   <Text>Search Event</Text>
+      //   <TextInput
+      //     style={styles.textInput}
+      //     autoCapitalize="none"
+      //     placeholder="Access Code"
+      //     onChangeText={accessCode => this.setState({ accessCode })}
+      //     value={this.state.accessCode}
+      //   />
+      //   <Button title="Search" onPress={this.onSearch} disabled={disabled} />
+      //   {scavengerHunt && !closed &&
+      //     <View>
+      //       <Text>{scavengerHunt.name}</Text>
+      //       <JoinEvent scavengerHunt={scavengerHunt} />
+      //     </View>
+      //   }
+      //   {error && <Text>{error}</Text>}
+      // </View>
     );
   } 
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    // flex: 1,
+    // justifyContent: 'center',
+    // alignItems: 'center'
   },
   textInput: {
     height: 40,
