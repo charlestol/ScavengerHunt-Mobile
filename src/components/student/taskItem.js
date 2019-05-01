@@ -89,6 +89,14 @@ class TaskItem extends Component {
                 }
                 <TaskResult task={taskName} ac={ac} />
                 <ViewSubmission ac={ac} task={taskName} />
+                <Button
+                title={"back"}
+                onPress={() => {
+                  this.props.navigation.navigate('SEventItem', {
+                      accessCode: ac
+                  })
+                }}
+              />
             </View>
         );
     }
