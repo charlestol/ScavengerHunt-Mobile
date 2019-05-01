@@ -90,6 +90,15 @@ class SubmitText extends Component {
                         <Text>{textEntry}</Text>
                     </View>    
                 }
+                <Button
+                    title={"back"}
+                    onPress={() => {
+                        this.props.navigation.navigate('STaskItem', {
+                            accessCode: ac,
+                            taskName: task
+                        })
+                    }}
+                />
             </View>
         )
     }
