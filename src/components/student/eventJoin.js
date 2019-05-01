@@ -1,5 +1,23 @@
 import React, { Component } from 'react';  
-import { View, Text, Alert, Button } from 'react-native';
+// import { View, Text, Alert, Button } from 'react-native';
+import { View, Alert } from 'react-native';
+
+import {
+  Container,
+  Content,
+  Header,
+  Title,
+  Text,
+  Button,
+  Icon,
+  Footer,
+  FooterTab,
+  Left,
+  Right,
+  Body,
+  H1,
+  
+} from "native-base";
 import firebase from 'firebase/app';
 import 'firebase/firestore'
 require('../../config')
@@ -55,10 +73,15 @@ export default class JoinEvent extends Component {
 
   render() {
     return (
-      <View>
-        <Text>Join Event</Text>
-        <Button title="Join" onPress={this.handleJoin}></Button>
-      </View>
+      <Content >
+        {/* <H1>Join Event</H1> */}
+        <Button block 
+        bloack
+        style={{marginTop: 10}}
+        title="Join" onPress={this.handleJoin}>
+        <Text> Join </Text>
+        </Button>
+      </Content>
     );
   }
 }

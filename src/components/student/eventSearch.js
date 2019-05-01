@@ -19,6 +19,7 @@ import {
   Label,
   Input,
   H2,
+  H1,
   // View,
   Badge,
   Tab,
@@ -131,12 +132,14 @@ export default class SearchEvent extends Component {
           onChangeText={accessCode => this.setState({ accessCode })}
           value={this.state.accessCode}
         /> */}
-        <Button block onPress={this.onSearch} disabled={disabled} >
+        <Button 
+          block
+          bordered onPress={this.onSearch} disabled={disabled} >
         <Text>Search</Text>
         </Button>
         {scavengerHunt && !closed &&
-          <View>
-            <Text>{scavengerHunt.name}</Text>
+          <View style={{marginTop: 20}}>
+            <H1>Event Name: {scavengerHunt.name}</H1>
             <JoinEvent scavengerHunt={scavengerHunt} />
           </View>
         }

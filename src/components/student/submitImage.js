@@ -1,17 +1,53 @@
 import React from 'react';
+// import {
+//   ActivityIndicator,
+//   Button,
+//   Clipboard,
+//   Image,
+//   Share,
+//   StatusBar,
+//   StyleSheet,
+//   Text,
+//   TouchableOpacity,
+//   Alert,
+//   View,
+// } from 'react-native';
 import {
   ActivityIndicator,
-  Button,
   Clipboard,
   Image,
   Share,
   StatusBar,
   StyleSheet,
-  Text,
   TouchableOpacity,
   Alert,
   View,
 } from 'react-native';
+import {
+  Container,
+  Content,
+  Header,
+  Title,
+  Text,
+  Button,
+  Icon,
+  Footer,
+  FooterTab,
+  Left,
+  Right,
+  Body,
+  H1,
+  Form,
+  Item,
+  Label,
+  Input,
+  // View,
+  Badge,
+  Tab,
+  Tabs,
+  List,
+  ListItem
+} from "native-base";
 import { Constants, ImagePicker, Permissions } from 'expo';
 import uuid from 'uuid';
 import * as firebase from 'firebase';
@@ -45,7 +81,31 @@ class SubmitImage extends React.Component {
       let taskName = this.props.navigation.state.params.task
   
       return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+
+
+        <Container>
+        <Header>
+            <Left>
+            <Button 
+            transparent 
+            onPress={() => {
+              this.props.navigation.navigate('STaskItem', {
+                  accessCode: ac,
+                  taskName: taskName
+              })
+            }}
+            >
+            <Icon name="arrow-back" />
+            </Button>
+        </Left>
+        <Body>
+        <Title>Image Submission</Title>
+        </Body>
+        <Right>
+        </Right>
+    </Header>
+
+    <Content style={{margin: 10}} >
           {image ? null : (
             <Text
               style={{
@@ -59,17 +119,32 @@ class SubmitImage extends React.Component {
           )}
   
           <Button
+            style={{marginBottom: 10}}
+            block
             onPress={this._pickImage}
-            title="Pick an image from camera roll"
-          />
+            // title="Pick an image from camera roll"
+          > 
+          <Text>
+            Upload a Picture
+          </Text>
+          </Button>
   
-          <Button onPress={this._takePhoto} title="Take a photo" />
+          <Button 
+            style={{marginBottom: 10}}
+            block
+            onPress={this._takePhoto} 
+            // title="Take a photo" 
+            > 
+            <Text>
+              Take a Picture   
+            </Text> 
+          </Button>
   
           {this._maybeRenderImage()}
           {this._maybeRenderUploadingOverlay()}
   
           <StatusBar barStyle="default" />
-          <Button
+          {/* <Button
             title={"back"}
             onPress={() => {
               this.props.navigation.navigate('STaskItem', {
@@ -77,8 +152,64 @@ class SubmitImage extends React.Component {
                   taskName: taskName
               })
             }}
-          />
-        </View>
+          /> */}
+        </Content>
+
+    <Footer>
+        <FooterTab>
+        <Button
+        onPress={() => this.props.navigation.navigate('DashboardS')}
+        >
+            <Icon  name="home" />
+            <Text>Home</Text>
+        </Button>
+        <Button 
+            onPress={() => this.props.navigation.navigate('ProfileS')}
+        >
+            <Icon name="person" />
+            <Text>Profile</Text>
+        </Button>
+        </FooterTab>
+    </Footer>
+    </Container>
+        
+
+
+
+        // <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        //   {image ? null : (
+        //     <Text
+        //       style={{
+        //         fontSize: 20,
+        //         marginBottom: 20,
+        //         textAlign: 'center',
+        //         marginHorizontal: 15,
+        //       }}>
+        //       Example: Upload ImagePicker result
+        //     </Text>
+        //   )}
+  
+        //   <Button
+        //     onPress={this._pickImage}
+        //     title="Pick an image from camera roll"
+        //   />
+  
+        //   <Button onPress={this._takePhoto} title="Take a photo" />
+  
+        //   {this._maybeRenderImage()}
+        //   {this._maybeRenderUploadingOverlay()}
+  
+        //   <StatusBar barStyle="default" />
+        //   <Button
+        //     title={"back"}
+        //     onPress={() => {
+        //       this.props.navigation.navigate('STaskItem', {
+        //           accessCode: ac,
+        //           taskName: taskName
+        //       })
+        //     }}
+        //   />
+        // </View>
       );
     }
   
