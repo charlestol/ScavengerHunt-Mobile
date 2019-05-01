@@ -36,7 +36,7 @@ class TaskList extends Component {
     let completedTasks = {}
     let completed = []
 
-    firebase.auth().onAuthStateChanged(user => {
+    this.unsubscribe = firebase.auth().onAuthStateChanged(user => {
       if(user === null) {
           return
       }  
@@ -66,6 +66,10 @@ class TaskList extends Component {
         })
       })
     })
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe()
   }
 
   render() {
