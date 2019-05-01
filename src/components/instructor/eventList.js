@@ -18,7 +18,7 @@ class ListEvent extends Component {
     state = { scavengerHunts: [] };
 
     componentDidMount() {
-      firebase.auth().onAuthStateChanged(user => {
+      this.unsubscribe = firebase.auth().onAuthStateChanged(user => {
       if(user === null) {
         return;
       }  
@@ -38,7 +38,7 @@ class ListEvent extends Component {
       });})
     }
     componentWillUnmount() {
-      this.unsubscribe
+      this.unsubscribe()
   }
     render() {
         const { scavengerHunts } = this.state;

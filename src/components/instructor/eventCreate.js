@@ -29,6 +29,9 @@ import 'firebase/firestore'
 require('../../config')
 const db = firebase.firestore();
 
+const ERROR_AC_TAKEN = "This access code is already in use. Please try another."
+
+
 export default class CreateSH extends Component {  
     state = {
       name: '',
@@ -46,24 +49,30 @@ export default class CreateSH extends Component {
       const {name, accessCode, dateStart, dateEnd, instructions, selectedStartHours,
         selectedStartMinutes, selectedEndHours, selectedEndMinutes} = this.state;
 
-        let start = `${dateStart.toString()} ${selectedStartHours}:${selectedStartMinutes}`
-        let end = `${dateEnd.toString()} ${selectedEndHours}:${selectedEndMinutes}`
-        // firebase.firestore.Timestamp.fromDate(new Date(start))
-
-      firebase.auth().onAuthStateChanged(user => {
-        const eventData = {
-          name, accessCode, dateStart: start, dateEnd: end, instructions, email: user.email
-        }
-        
-        db.collection('scavengerHunts').doc(accessCode).set(eventData)
-        .then(() => {
-            console.log("Document successfully written!");
-            Alert.alert('Event Created');
-        })
-        .catch(function(error) {
-            console.error("Error writing document: ", error);
-            // this.setState({error})
-        });
+      let start = `${dateStart.toString()} ${selectedStartHours}:${selectedStartMinutes}`
+      let end = `${dateEnd.toString()} ${selectedEndHours}:${selectedEndMinutes}`
+      // firebase.firestore.Timestamp.fromDate(new Date(start))
+      db.collection('scavengerHunts').doc(accessCode).get()
+      .then(doc => {
+          if(doc.exists) {
+            Alert.alert(ERROR_AC_TAKEN);
+          } else {
+            firebase.auth().onAuthStateChanged(user => {
+              const eventData = {
+                name, accessCode, dateStart: start, dateEnd: end, instructions, email: user.email
+              }
+              
+              db.collection('scavengerHunts').doc(accessCode).set(eventData)
+              .then(() => {
+                  console.log("Document successfully written!");
+                  Alert.alert('Event Created');
+              })
+              .catch(function(error) {
+                  console.error("Error writing document: ", error);
+                  // this.setState({error})
+              });
+            })
+          }
       })
     }
 
