@@ -71,13 +71,15 @@ return (
       <Title>Profile</Title>
     </Body>
     <Right>
-    <Button onPress={this.handleSignout} >
+    <Button 
+    transparent
+    onPress={this.handleSignout} >
         <Text> Signout </Text>
     </Button>
     </Right>
   </Header>
   <Content
-     contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
+    contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
     <H1>
         {currentUser && currentUser.email}
     </H1>

@@ -52,9 +52,6 @@ render() {
     const { currentUser } = this.state
 return (
 
-
-
-
   <Container style={styles.container}>
   <Header>
     <Body>
