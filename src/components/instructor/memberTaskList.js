@@ -17,7 +17,7 @@ class CompletionList extends Component {
         let ac = this.props.ac
         let email = this.props.email
 
-        db.collection('scavengerHunts').doc(ac).collection('members').doc(email).collection('submissions')
+        this.unsubscribe = db.collection('scavengerHunts').doc(ac).collection('members').doc(email).collection('submissions')
         .onSnapshot(querySnapshot => {
             let tasksCompleted = [];
             let tasksInProgess = [];
@@ -33,10 +33,7 @@ class CompletionList extends Component {
               let task = doc.data();
               tasks.push(task.name);
             });
-    
-            // console.log("Subs: ",tasksCompleted);
-            // console.log("tasks: ",tasks);
-    
+        
             tasks.forEach(task => {
               if(!tasksCompleted.includes(task)) {
                 tasksInProgess.push(task);
@@ -51,6 +48,9 @@ class CompletionList extends Component {
         });
     }
     
+    componentWillUnmount() {
+      this.unsubscribe()
+    }
   render() {
     const { tasksCompleted, tasksInProgess } = this.state;
     let ac = this.props.ac

@@ -8,8 +8,9 @@ import Login from './src/components/auth/login'
 
 import Student from './src/components/student/dashboard'
 import SEventItem from './src/components/student/eventItem'
-import SEventResults from './src/components/student/eventResults'
 import STaskItem from './src/components/student/taskItem'
+import SubmitImage from './src/components/student/submitImage'
+import SubmitText from './src/components/student/submitText'
 
 import Instructor from './src/components/instructor/dashboard'
 import IEventItem from './src/components/instructor/eventItem'
@@ -30,6 +31,8 @@ const App = createAppContainer(createSwitchNavigator(
     Student,
     SEventItem,
     STaskItem,
+    SubmitText,
+    SubmitImage,
     Instructor,
     IEventItem,
     IEventList,

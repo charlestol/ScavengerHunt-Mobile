@@ -3,6 +3,8 @@ import { StyleSheet, Platform, Image, Text, View, Button } from 'react-native'
 import firebase from 'firebase/app';
 import ListEvent from './eventList';
 import CreateSH from './eventCreate';
+import ActiveEvents from './eventsActive';
+
 require('../../config')
 
 export default class InstructorDash extends React.Component {
@@ -30,7 +32,8 @@ return (
         <Text>
           Hi {currentUser && currentUser.email}!
         </Text>
-        {/* <CreateSH/> */}
+        <CreateSH/>
+        <ActiveEvents />
         <ListEvent />
         <Button title="sign out" onPress={this.handleSignout}></Button>
       </View>

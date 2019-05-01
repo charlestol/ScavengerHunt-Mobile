@@ -48,7 +48,7 @@ export default class TotalScore extends Component {
         });
     }
 
-    onSubmit = event => {
+    onSubmit = () => {
         const { totalScore, numOfTasks, feedback } = this.state;
         
         let ac = this.props.ac;
@@ -73,25 +73,15 @@ export default class TotalScore extends Component {
         });
     }
 
-    onChange = event => {
-        this.setState({ [event.target.name]: event.target.value });
-    }
-
   render() {
-    const {   
-        feedback,
-        totalScore,
-        numOfTasks
-    } = this.state;
-
     return (
       <View>
         <Text>Total Score</Text>
-        {totalScore === null && numOfTasks === null &&
+        {this.state.totalScore === null && this.state.numOfTasks === null &&
             <Text>Total Score: -/-</Text>
         }
-        {totalScore !== null && numOfTasks !== null &&
-            <Text>Total Score: {`${totalScore}/${numOfTasks}`}</Text>
+        {this.state.totalScore !== null && this.state.numOfTasks !== null &&
+            <Text>Total Score: {`${this.state.totalScore}/${this.state.numOfTasks}`}</Text>
         }
         <View>
             <Text>Overall Feedback</Text>
@@ -99,8 +89,8 @@ export default class TotalScore extends Component {
                 placeholder="Type Feedback Here"
                 autoCapitalize="none"
                 // style={styles.textInput}
-                onChangeText={this.onChange}
-                value={feedback}
+                onChangeText={feedback => this.setState({ feedback })}
+                value={this.state.feedback}
             />
         </View>
         <Button title="Submit Result" onPress={this.onSubmit}/>

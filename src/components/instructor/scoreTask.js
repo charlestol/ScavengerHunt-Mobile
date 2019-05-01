@@ -15,7 +15,7 @@ export default class GiveScore extends Component {
 
     state = { ...INITIAL_STATE }
 
-    onSubmit = event => {
+    onSubmit = () => {
         const { score, feedback } = this.state;
         let self = this;
         
@@ -42,24 +42,14 @@ export default class GiveScore extends Component {
         });
     }
 
-    onChange = event => {
-        this.setState({ [event.target.name]: event.target.value });
-    }
-
-
   render() {
-    const {   
-        score,
-        feedback
-    } = this.state;
-
     // const isInvalid = score === '';
 
     return (
       <View>
         <Text>Give Score</Text>
         <Picker
-            selectedValue={score}
+            selectedValue={this.state.score}
             // style={{height: 50, width: 100}}
             onValueChange={(itemValue, itemIndex) =>
             this.setState({score: itemValue})
@@ -71,8 +61,8 @@ export default class GiveScore extends Component {
             placeholder="Type feedback here"
             autoCapitalize="none"
             //style={styles.textInput}
-            onChange={this.onChange}
-            value={feedback}
+            onChangeText={feedback => this.setState({ feedback })}
+            value={this.state.feedback}
         />
         <Button title="Submit" onPress={this.onSubmit} />
       </View>
