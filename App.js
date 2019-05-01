@@ -19,6 +19,7 @@ import ITaskList from './src/components/instructor/taskList'
 import ITaskItem from './src/components/instructor/taskItem'
 import IMemberInfo from './src/components/instructor/memberInfo'
 import IMemberSubmission from './src/components/instructor/memberSubmission'
+import EventHistory from './src/components/EventHistory'
 
 
 // create our app's navigation stack
@@ -37,7 +38,8 @@ const App = createAppContainer(createSwitchNavigator(
     ITaskList,
     ITaskItem,
     IMemberInfo,
-    IMemberSubmission
+    IMemberSubmission,
+    EventHistory
   },
   {
     initialRouteName: 'Loading'
