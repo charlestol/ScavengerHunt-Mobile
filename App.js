@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {Component} from 'react'
 import { StyleSheet, Platform, Image, Text, View } from 'react-native'
 import { createSwitchNavigator, createAppContainer } from 'react-navigation';
+import { Font } from "expo";
 // import the different screens
 import Loading from './src/components/auth/loading'
 import SignUp from './src/components/auth/signUp'
@@ -11,6 +12,12 @@ import SEventItem from './src/components/student/eventItem'
 import STaskItem from './src/components/student/taskItem'
 import SubmitImage from './src/components/student/submitImage'
 import SubmitText from './src/components/student/submitText'
+import DashboardS from './src/components/student/dashboard'
+import ProfileS from './src/components/student/profileS'
+import EventSearch from './src/components/student/eventSearch'
+
+
+
 
 import Instructor from './src/components/instructor/dashboard'
 import IEventItem from './src/components/instructor/eventItem'
@@ -20,10 +27,16 @@ import ITaskList from './src/components/instructor/taskList'
 import ITaskItem from './src/components/instructor/taskItem'
 import IMemberInfo from './src/components/instructor/memberInfo'
 import IMemberSubmission from './src/components/instructor/memberSubmission'
+import ProfileT from './src/components/instructor/profileT'
+import DashboardT from './src/components/instructor/dashboard'
+import EventCreate from './src/components/instructor/eventCreate'
+
+
+
 
 
 // create our app's navigation stack
-const App = createAppContainer(createSwitchNavigator(
+const Routes = createAppContainer(createSwitchNavigator(
   {
     Loading,
     SignUp,
@@ -40,10 +53,46 @@ const App = createAppContainer(createSwitchNavigator(
     ITaskList,
     ITaskItem,
     IMemberInfo,
-    IMemberSubmission
+    IMemberSubmission,
+    ProfileT,
+    DashboardT,
+    DashboardS,
+    EventCreate,
+    ProfileS,
+    EventSearch
   },
   {
     initialRouteName: 'Loading'
   }
 ))
-export default App
+
+export default class App extends Component {
+  state = {
+    fontLoaded: false,
+    loading: false
+  };
+
+  async componentWillMount() {
+    try {
+      this.setState({ loading: true })
+      await Font.loadAsync({
+      Roboto: require("native-base/Fonts/Roboto.ttf"),
+      Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+      Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
+      });
+      this.setState({ fontLoaded: true, loading: false });
+    } catch (error) {
+      console.log('error loading icon fonts', error);
+      this.setState({ loading: false })
+    }
+  }
+
+  render() {
+    const { loading } = this.state
+    return(
+      (loading) ? <Text>Loading...</Text> : <Routes />
+
+    )
+  }
+}
+// export default App

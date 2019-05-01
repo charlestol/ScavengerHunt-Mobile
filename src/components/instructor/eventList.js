@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
+// import { View, Text, Button } from 'react-native';
+import { View} from 'react-native';
+import {
+  Container,
+  Content,
+  Button,
+  Text,
+} from "native-base";
 import firebase from 'firebase/app';
 import { withNavigation } from 'react-navigation';
 
@@ -36,21 +43,43 @@ class ListEvent extends Component {
     render() {
         const { scavengerHunts } = this.state;
       return (
-        <View>
-          <Text>List Event</Text>
-          {scavengerHunts.map(scavengerHunt => (
-            <View key={scavengerHunt.accessCode}>
-              <Button
-                title={scavengerHunt.name}
-                onPress={() => {
-                  this.props.navigation.navigate('IEventItem', {
-                    accessCode: scavengerHunt.accessCode,
-                  })
-                }}
-              />
-            </View>
-          ))}
-        </View>
+
+        <Container>
+        <Text></Text>
+        {scavengerHunts.map(scavengerHunt => (
+          <View key={scavengerHunt.accessCode}>
+            <Button
+            style={{marginBottom: 10, marginLeft: 10, marginRight:10}}
+            full 
+            bordered
+              onPress={() => {
+                this.props.navigation.navigate('IEventItem', {
+                  accessCode: scavengerHunt.accessCode,
+                })
+              }}
+            > 
+            <Text>
+            {scavengerHunt.name}
+            </Text> 
+            </Button>
+          </View>
+        ))}
+      </Container>
+        // <View>
+        //   <Text>List Event</Text>
+        //   {scavengerHunts.map(scavengerHunt => (
+        //     <View key={scavengerHunt.accessCode}>
+        //       <Button
+        //         title={scavengerHunt.name}
+        //         onPress={() => {
+        //           this.props.navigation.navigate('IEventItem', {
+        //             accessCode: scavengerHunt.accessCode,
+        //           })
+        //         }}
+        //       />
+        //     </View>
+        //   ))}
+        // </View>
       );
     }
   }

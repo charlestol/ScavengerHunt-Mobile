@@ -1,5 +1,23 @@
 import React, { Component } from 'react'
-import { View, Text, Button, StyleSheet } from 'react-native'
+// import { View, Text, Button, StyleSheet } from 'react-native'
+import { View, StyleSheet, TextInput } from 'react-native';
+import {
+  Container,
+  Header,
+  Title,
+  Content,
+  Text,
+  Button,
+  Icon,
+  Footer,
+  FooterTab,
+  Left,
+  Right,
+  Body,
+  ListItem,
+  List,
+  H1
+} from "native-base";
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 require('../../config')
@@ -48,11 +66,13 @@ export default class TaskResults extends Component {
         const { score, feedback} = this.state;
 
         return ( 
-            <View>
-                <Text>Submission Review</Text>
-                <Text>Score: {score}/1</Text>
-                {feedback && <Text>{feedback}</Text>}
-            </View>
+            <Content
+            style={{marginTop: 40}}
+            >
+                <H1 style={{color:"blue"}}>Submission Review</H1>
+                <H1>Score: {score}/1</H1>
+                {feedback && <H1>{feedback}</H1>}
+            </Content>
         )
     }
 }

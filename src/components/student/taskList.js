@@ -1,5 +1,23 @@
 import React, { Component } from 'react';  
-import { View, Text, TextInput, StyleSheet, Alert, Button } from 'react-native';
+// import { View, Text, TextInput, StyleSheet, Alert, Button } from 'react-native';
+import { View, StyleSheet, TextInput } from 'react-native';
+import {
+  Container,
+  Header,
+  Title,
+  Content,
+  Text,
+  Button,
+  Icon,
+  Footer,
+  FooterTab,
+  Left,
+  Right,
+  Body,
+  ListItem,
+  List,
+  H1
+} from "native-base";
 import { withNavigation } from 'react-navigation'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
@@ -18,7 +36,7 @@ class TaskList extends Component {
     let completedTasks = {}
     let completed = []
 
-    firebase.auth().onAuthStateChanged(user => {
+    this.unsubscribe = firebase.auth().onAuthStateChanged(user => {
       if(user === null) {
           return
       }  
@@ -50,41 +68,87 @@ class TaskList extends Component {
     })
   }
 
+  componentWillUnmount() {
+    this.unsubscribe()
+  }
+
   render() {
     const { tasks, completed } = this.state;
     // console.log('list', tasks)
 
     return (
-      <View>
-        {tasks.length !== 0 && <Text>Tasks In-Progress</Text>}
-        {tasks.length !== 0 && tasks.map(task => (
-          <View key={task}>
-            <Button
-              title={task}
-              onPress={() => {
-                this.props.navigation.navigate('STaskItem', {
-                  accessCode: this.props.accessCode,
-                  taskName: task
-                })
-              }}
-            />
-          </View>
-        ))}
-        {completed.length !== 0 && <Text>Tasks Completed</Text>}
-        {completed.length !== 0 && completed.map(task => (
-          <View key={task}>
-            <Button
-              title={task}
-              onPress={() => {
-                this.props.navigation.navigate('STaskItem', {
-                  accessCode: this.props.accessCode,
-                  taskName: task
-                })
-              }}
-            />            
-          </View>
-        ))}
-      </View>
+
+      <Content
+      style={{margin:10}}
+      >
+      {tasks.length !== 0 && <Text>Tasks In-Progress</Text>}
+      {tasks.length !== 0 && tasks.map(task => (
+        <View key={task}>
+          <Button
+            style={{marginBottom:10}}
+            block
+            onPress={() => {
+              this.props.navigation.navigate('STaskItem', {
+                accessCode: this.props.accessCode,
+                taskName: task
+              })
+            }}
+          > 
+          <Text>{task} </Text>
+          </Button>
+        </View>
+      ))}
+      {completed.length !== 0 && <Text>Tasks Completed</Text>}
+      {completed.length !== 0 && completed.map(task => (
+        <View key={task}>
+          <Button
+            style={{marginBottom:10}}
+            block
+            onPress={() => {
+              this.props.navigation.navigate('STaskItem', {
+                accessCode: this.props.accessCode,
+                taskName: task
+              })
+            }}
+          > 
+          <Text> 
+            {task}
+          </Text>
+          </Button>            
+        </View>
+      ))}
+    </Content>
+
+      // <View>
+      //   {tasks.length !== 0 && <Text>Tasks In-Progress</Text>}
+      //   {tasks.length !== 0 && tasks.map(task => (
+      //     <View key={task}>
+      //       <Button
+      //         title={task}
+      //         onPress={() => {
+      //           this.props.navigation.navigate('STaskItem', {
+      //             accessCode: this.props.accessCode,
+      //             taskName: task
+      //           })
+      //         }}
+      //       />
+      //     </View>
+      //   ))}
+      //   {completed.length !== 0 && <Text>Tasks Completed</Text>}
+      //   {completed.length !== 0 && completed.map(task => (
+      //     <View key={task}>
+      //       <Button
+      //         title={task}
+      //         onPress={() => {
+      //           this.props.navigation.navigate('STaskItem', {
+      //             accessCode: this.props.accessCode,
+      //             taskName: task
+      //           })
+      //         }}
+      //       />            
+      //     </View>
+      //   ))}
+      // </View>
     )
   }
 }

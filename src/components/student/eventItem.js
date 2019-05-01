@@ -1,5 +1,24 @@
 import React, { Component } from 'react';  
-import { View, Text, Button, StyleSheet } from 'react-native';
+// import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+
+import {
+  Container,
+  Header,
+  Title,
+  Content,
+  Text,
+  Button,
+  Icon,
+  Footer,
+  FooterTab,
+  Left,
+  Right,
+  Body,
+  ListItem,
+  List,
+  H1
+} from "native-base";
 import firebase from 'firebase/app';
 import 'firebase/firestore'
 require('../../config')
@@ -54,16 +73,36 @@ export default class EventItem extends Component {
   render() {
     const { sh, closed, notStarted } = this.state
     return (
-      <View style={styles.container}>
-        {sh.accessCode && 
+
+
+      <Container style={styles.container}>
+      <Header>
+      <Left>
+            <Button 
+              transparent 
+              onPress={() => this.props.navigation.navigate('Student')}
+              >
+              <Icon name="arrow-back" />
+            </Button>
+        </Left>
+        <Body>
+          <Title>Dashboard</Title>
+        </Body>
+        <Right>
+        <Button
+            transparent
+            onPress={this.showDialog}
+          >
+            <Icon name="add" />
+          </Button>
+        </Right>
+      </Header>
+
+      <Content style={styles.container}>
+      {sh.accessCode && 
           <View>
-             <Button
-                title={"back"}
-                onPress={() => {
-                  this.props.navigation.navigate('Student')
-                }}
-              />
-            <Text>{sh.name}</Text>
+             
+            <H1>{sh.name}</H1>
             {closed && 
               <Text>This event has ended</Text>
             }
@@ -72,15 +111,62 @@ export default class EventItem extends Component {
             {!notStarted && <ListTasks accessCode={sh.accessCode} />}
           </View>
         }
-      </View>
+       </Content>
+
+
+
+      <Footer>
+        <FooterTab>
+          <Button
+          onPress={() => this.props.navigation.navigate('DashboardS')}
+          >
+            <Icon  name="home" />
+            <Text>Home</Text>
+          </Button>
+          <Button 
+            onPress={() => this.props.navigation.navigate('ProfileS')}
+          >
+            <Icon name="person" />
+            <Text>Profile</Text>
+          </Button>
+        </FooterTab>
+      </Footer>
+      </Container>
+
+
+      // <View style={styles.container}>
+      //   {sh.accessCode && 
+      //     <View>
+      //        <Button
+      //           title={"back"}
+      //           onPress={() => {
+      //             this.props.navigation.navigate('Student')
+      //           }}
+      //         />
+      //       <Text>{sh.name}</Text>
+      //       {closed && 
+      //         <Text>This event has ended</Text>
+      //       }
+      //       <EventResults />
+      //       {notStarted && <Text>The event has not started</Text>}
+      //       {!notStarted && <ListTasks accessCode={sh.accessCode} />}
+      //     </View>
+      //   }
+      // </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    // flex: 1,
+    // justifyContent: 'center',
+    // alignItems: 'center'
+  },
+  content: {
+    margin: 10
+  },
+  btnSpacing: {
+    marginBottom: 10
   }
 })

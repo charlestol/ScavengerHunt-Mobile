@@ -7,7 +7,7 @@ require('../../config')
 const db = firebase.firestore();
 
 const INITIAL_STATE = {
-    score: '',
+    score: 1,
     feedback: ''
 }
 
@@ -43,7 +43,9 @@ export default class GiveScore extends Component {
     }
 
   render() {
-    // const isInvalid = score === '';
+    const isInvalid = 
+                this.state.score === '' ||
+                this.state.feedback === '' ;
 
     return (
       <View>
@@ -64,7 +66,7 @@ export default class GiveScore extends Component {
             onChangeText={feedback => this.setState({ feedback })}
             value={this.state.feedback}
         />
-        <Button title="Submit" onPress={this.onSubmit} />
+        <Button title="Submit" onPress={this.onSubmit} disabled={isInvalid}/>
       </View>
     );
   }

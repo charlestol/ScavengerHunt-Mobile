@@ -41,6 +41,8 @@ class SubmitImage extends React.Component {
   
     render() {
       let { image } = this.state;
+      let ac = this.props.navigation.state.params.ac
+      let taskName = this.props.navigation.state.params.task
   
       return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -67,6 +69,15 @@ class SubmitImage extends React.Component {
           {this._maybeRenderUploadingOverlay()}
   
           <StatusBar barStyle="default" />
+          <Button
+            title={"back"}
+            onPress={() => {
+              this.props.navigation.navigate('STaskItem', {
+                  accessCode: ac,
+                  taskName: taskName
+              })
+            }}
+          />
         </View>
       );
     }

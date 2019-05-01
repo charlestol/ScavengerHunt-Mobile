@@ -74,6 +74,9 @@ export default class TotalScore extends Component {
     }
 
   render() {
+    const isInvalid = 
+        this.state.feedback === '';
+
     return (
       <View>
         <Text>Total Score</Text>
@@ -93,7 +96,7 @@ export default class TotalScore extends Component {
                 value={this.state.feedback}
             />
         </View>
-        <Button title="Submit Result" onPress={this.onSubmit}/>
+        <Button title="Submit Result" onPress={this.onSubmit} disabled={isInvalid}/>
                 
       </View>
     );
