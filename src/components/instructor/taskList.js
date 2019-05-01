@@ -15,7 +15,7 @@ class ListTask extends Component {
     componentDidMount() {
         let ac = this.props.navigation.state.params.accessCode
         // console.log(this.props.navigation.state.params.accessCode)
-        db.collection("scavengerHunts").doc(ac).collection('tasks')
+        this.unsubscribe = db.collection("scavengerHunts").doc(ac).collection('tasks')
         .onSnapshot(querySnapshot => {
             let tasks = [];
             querySnapshot.forEach(doc => {
@@ -27,6 +27,10 @@ class ListTask extends Component {
               tasks,
             });
           });
+    }
+
+    componentWillUnmount() {
+      this.unsubscribe()
     }
 
   render() {
