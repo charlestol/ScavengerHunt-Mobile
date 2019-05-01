@@ -2,9 +2,8 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 18991,
-  "expoServerNgrokUrl": "https://hy-42v.anonymous.scavengerhunt-mobile.exp.direct",
-  "packagerNgrokUrl": "https://packager.hy-42v.anonymous.scavengerhunt-mobile.exp.direct",
-  "ngrokPid": 19013
-
+  "packagerPid": 1580,
+  "expoServerNgrokUrl": "https://gt-abi.anonymous.scavengerhunt-mobile.exp.direct",
+  "packagerNgrokUrl": "https://packager.gt-abi.anonymous.scavengerhunt-mobile.exp.direct",
+  "ngrokPid": 1597
 }
