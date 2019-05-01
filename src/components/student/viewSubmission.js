@@ -1,5 +1,25 @@
 import React, { Component } from 'react'; 
-import { View, Text, TextInput, Alert, Button, StyleSheet, Image} from 'react-native'
+// import { View, Text, TextInput, Alert, Button, StyleSheet, Image} from 'react-native'
+import { View, StyleSheet, TextInput, Alert, Image } from 'react-native';
+import {
+  Container,
+  Header,
+  Title,
+  Content,
+  Text,
+  Button,
+  Icon,
+  Footer,
+  FooterTab,
+  Left,
+  Right,
+  Body,
+  ListItem,
+  List,
+  H1,
+  H2
+} from "native-base";
+
 import { withNavigation } from 'react-navigation'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
@@ -47,13 +67,20 @@ export default class ViewSubmission extends Component {
         const { type, submission} = this.state;
 
         return ( 
-            <View>
+
+            <Content style={{marginTop: 40}}>
                 {submission && 
                     <View>
-                        <Text>Submission</Text>
+                        <H2 style={{color: "red"}}>Submission</H2>
                         {type==='image' && 
-                            <View>
-                                <Image source={{uri: submission}} style={{ height: 100, width:100}} />
+                            <View 
+                            style={{
+                                flex: 1,
+                                justifyContent: 'center',
+                                alignItems: 'center'
+                            }}
+                            >
+                                <Image source={{uri: submission}} style={{ height: 400, width:400}} />
                             </View>
                         }
                         {type==='text' && 
@@ -63,7 +90,25 @@ export default class ViewSubmission extends Component {
                         }
                     </View>
                 }
-            </View>
+            </Content>
+
+            // <View>
+            //     {submission && 
+            //         <View>
+            //             <Text>Submission</Text>
+            //             {type==='image' && 
+            //                 <View>
+            //                     <Image source={{uri: submission}} style={{ height: 100, width:100}} />
+            //                 </View>
+            //             }
+            //             {type==='text' && 
+            //                 <View>
+            //                     <Text>{submission}</Text>
+            //                 </View>
+            //             }
+            //         </View>
+            //     }
+            // </View>
         )
     }
 }

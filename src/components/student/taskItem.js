@@ -1,5 +1,24 @@
 import React, { Component } from 'react'
-import { View, Text, Button, StyleSheet } from 'react-native'
+// import { View, Text, Button, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native';
+import {
+  Container,
+  Header,
+  Title,
+  Content,
+  Text,
+  Button,
+  Icon,
+  Footer,
+  FooterTab,
+  Left,
+  Right,
+  Body,
+  ListItem,
+  List,
+  H1,
+  H2
+} from "native-base";
 import { withNavigation } from 'react-navigation'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
@@ -65,39 +84,124 @@ class TaskItem extends Component {
 
         // console.log(task)
         return (
-            <View style={styles.container} >
-                <Text>Task: {taskName}</Text>
-                <Text>instructions: {task.instructions}</Text>
-                <Text>Submission Type: {task.entryType}</Text>
-                {task.entryType==='text' && !closed &&
+
+        <Container style={styles.container}>
+          <Header>
+            <Left>
+            <Button 
+              transparent 
+              onPress={() => {
+                this.props.navigation.navigate('SEventItem', {
+                    accessCode: ac
+                })
+              }}
+              >
+              <Icon name="arrow-back" />
+            </Button>
+        </Left>
+        <Body>
+          <Title>Task</Title>
+        </Body>
+        <Right>
+        </Right>
+      </Header>
+
+      <Content style={{margin:10}} >
+          <H1 style={styles.textSpacing}>Task: {taskName}</H1>
+          <H1 style={styles.textSpacing}>instructions: {task.instructions}</H1>
+          <H1 style={styles.textSpacing}>Submission Type: {task.entryType}</H1>
+            {task.entryType==='text' && !closed &&
                     <Button 
+                        block
                         title={"Submit Text"}
                         onPress={() => this.props.navigation.navigate("SubmitText",{
                             ac: ac,
                             task: taskName
                         })}
-                    />
+                    > 
+                    <Text>
+                      Submit Text
+                    </Text>
+                    </Button>
                 }
                 {task.entryType==='image' && !closed &&
                     <Button 
+                        style={styles.textSpacing}
+                        block
                         title={"Submit Image"}
                         onPress={() => this.props.navigation.navigate("SubmitImage",{
                             ac: ac,
                             task: taskName
                         })}
-                    />
+                    > 
+                    <Text> 
+                      Submit Image
+                    </Text>
+                    </Button>
                 }
                 <TaskResult task={taskName} ac={ac} />
                 <ViewSubmission ac={ac} task={taskName} />
-                <Button
-                title={"back"}
-                onPress={() => {
-                  this.props.navigation.navigate('SEventItem', {
-                      accessCode: ac
-                  })
-                }}
-              />
-            </View>
+                
+        </Content>
+
+      <Footer>
+        <FooterTab>
+          <Button
+          onPress={() => this.props.navigation.navigate('DashboardS')}
+          >
+            <Icon  name="home" />
+            <Text>Home</Text>
+          </Button>
+          <Button 
+            onPress={() => this.props.navigation.navigate('ProfileS')}
+          >
+            <Icon name="person" />
+            <Text>Profile</Text>
+          </Button>
+        </FooterTab>
+      </Footer>
+      </Container>
+
+
+
+
+
+
+
+
+            // <View style={styles.container} >
+            //     <Text>Task: {taskName}</Text>
+            //     <Text>instructions: {task.instructions}</Text>
+            //     <Text>Submission Type: {task.entryType}</Text>
+            //     {task.entryType==='text' && !closed &&
+            //         <Button 
+            //             title={"Submit Text"}
+            //             onPress={() => this.props.navigation.navigate("SubmitText",{
+            //                 ac: ac,
+            //                 task: taskName
+            //             })}
+            //         />
+            //     }
+            //     {task.entryType==='image' && !closed &&
+            //         <Button 
+            //             title={"Submit Image"}
+            //             onPress={() => this.props.navigation.navigate("SubmitImage",{
+            //                 ac: ac,
+            //                 task: taskName
+            //             })}
+            //         />
+            //     }
+            //     <TaskResult task={taskName} ac={ac} />
+            //     <ViewSubmission ac={ac} task={taskName} />
+              //   <Button
+              //   title={"back"}
+              //   onPress={() => {
+              //     this.props.navigation.navigate('SEventItem', {
+              //         accessCode: ac
+              //     })
+              //   }}
+              // />
+            // </View>
         );
     }
 }
@@ -107,8 +211,11 @@ export default withNavigation(TaskItem)
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center'
+      // flex: 1,
+      // justifyContent: 'center',
+      // alignItems: 'center'
+    },
+    textSpacing: {
+      marginBottom: 10
     }
   })

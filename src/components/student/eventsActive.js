@@ -1,8 +1,18 @@
 import React, { Component } from 'react';  
-import { View, Text, Alert, Button, StyleSheet } from 'react-native';
+// import { View, Text, Alert, Button, StyleSheet } from 'react-native';
+import { View } from 'react-native';
+import {
+  Container,
+  Content,
+  Button,
+  Text,
+  ListItem,
+  List  
+} from "native-base";
 import { withNavigation } from 'react-navigation';
 import firebase from 'firebase/app';
 import 'firebase/firestore'
+// import { Container } from 'native-base';
 require('../../config')
 const db = firebase.firestore();
 
@@ -48,21 +58,43 @@ class ActiveEvents extends Component {
   render() {
     const { activeEvents } = this.state;
     return (
-      <View>
-        <Text>On-Going Hunt Events</Text>
+
+
+      <Container>
+        <Text></Text>
         {activeEvents.map(scavengerHunt => (
             <View key={scavengerHunt.accessCode}>
               <Button
-                title={scavengerHunt.name}
+                style={{marginBottom: 10, marginLeft: 10, marginRight:10}}
+                full
+                bordered
+                // title={scavengerHunt.name}
                 onPress={() => {
                   this.props.navigation.navigate('SEventItem', {
                     accessCode: scavengerHunt.accessCode,
                   })
                 }}
-              />
+              > 
+              <Text>{scavengerHunt.name}</Text>
+              </Button>
             </View>
         ))}
-      </View>
+      </Container>
+      // <View>
+      //   <Text>On-Going Hunt Events</Text>
+      //   {activeEvents.map(scavengerHunt => (
+      //       <View key={scavengerHunt.accessCode}>
+      //         <Button
+      //           title={scavengerHunt.name}
+      //           onPress={() => {
+      //             this.props.navigation.navigate('SEventItem', {
+      //               accessCode: scavengerHunt.accessCode,
+      //             })
+      //           }}
+      //         />
+      //       </View>
+      //   ))}
+      // </View>
     );
   }
 }

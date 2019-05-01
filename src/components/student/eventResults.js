@@ -1,5 +1,23 @@
 import React, { Component } from 'react';  
-import { View, Text, Alert, Button, StyleSheet } from 'react-native';
+// import { View, Text, Alert, Button, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import {
+  Container,
+  Header,
+  Title,
+  Content,
+  Text,
+  Button,
+  Icon,
+  Footer,
+  FooterTab,
+  Left,
+  Right,
+  Body,
+  ListItem,
+  List,
+  H1
+} from "native-base";
 import { withNavigation } from 'react-navigation'
 
 import firebase from 'firebase/app';
@@ -36,7 +54,8 @@ class EventResults extends Component {
         const { score, feedback} = this.state
 
         return ( 
-            <View>                
+
+            <Content>                
                 {score && 
                     <View>
                         <Text>Event Review</Text>
@@ -46,7 +65,23 @@ class EventResults extends Component {
                         </View>
                     </View>
                 }
-            </View>
+            </Content>
+
+
+
+
+
+            // <View>                
+            //     {score && 
+            //         <View>
+            //             <Text>Event Review</Text>
+            //             <View>
+            //                 <Text>Score: {score}</Text>
+            //                 {feedback && <Text>Feedback: {feedback}</Text>}
+            //             </View>
+            //         </View>
+            //     }
+            // </View>
         )
     }
 }

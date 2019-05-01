@@ -13,6 +13,10 @@ import STaskItem from './src/components/student/taskItem'
 import SubmitImage from './src/components/student/submitImage'
 import SubmitText from './src/components/student/submitText'
 import DashboardS from './src/components/student/dashboard'
+import ProfileS from './src/components/student/profileS'
+import EventSearch from './src/components/student/eventSearch'
+
+
 
 
 import Instructor from './src/components/instructor/dashboard'
@@ -53,7 +57,9 @@ const Routes = createAppContainer(createSwitchNavigator(
     ProfileT,
     DashboardT,
     DashboardS,
-    EventCreate
+    EventCreate,
+    ProfileS,
+    EventSearch
   },
   {
     initialRouteName: 'Loading'
