@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 22926,
-  "expoServerNgrokUrl": "https://9d-ckx.anonymous.scavengerhunt-mobile.exp.direct",
-  "packagerNgrokUrl": "https://packager.9d-ckx.anonymous.scavengerhunt-mobile.exp.direct",
-  "ngrokPid": 22952
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
