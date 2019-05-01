@@ -73,7 +73,7 @@ return (
     <Tab heading="Active">
       <Content>
         <ActiveEvents />
-        <SearchEvent />
+        {/* <SearchEvent /> */}
       </Content>
     </Tab>
     <Tab heading="All">
