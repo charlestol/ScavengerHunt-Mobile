@@ -67,7 +67,7 @@ export default class TaskResults extends Component {
 
         return ( 
             <Content
-            style={{marginTop: 40}}
+            // style={{marginTop: 40}}
             >
                 <H1 style={{color:"blue"}}>Submission Review</H1>
                 <H1>Score: {score}/1</H1>

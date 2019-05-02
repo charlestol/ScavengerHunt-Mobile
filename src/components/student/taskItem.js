@@ -17,7 +17,9 @@ import {
   ListItem,
   List,
   H1,
-  H2
+  H2,
+  Tabs,
+  Tab
 } from "native-base";
 import { withNavigation } from 'react-navigation'
 import firebase from 'firebase/app'
@@ -105,12 +107,14 @@ class TaskItem extends Component {
         <Right>
         </Right>
       </Header>
-
-      <Content style={{margin:10}} >
-          <H1 style={styles.textSpacing}>Task: {taskName}</H1>
-          <H1 style={styles.textSpacing}>instructions: {task.instructions}</H1>
-          <H1 style={styles.textSpacing}>Submission Type: {task.entryType}</H1>
-            {task.entryType==='text' && !closed &&
+      <Content >
+          <Tabs >
+            <Tab heading="Submission">
+              <Content style={{margin:10}}>
+                <H1 style={styles.textSpacing}>Task: {taskName}</H1>
+                <H1 style={styles.textSpacing}>instructions: {task.instructions}</H1>
+                <H1 style={styles.textSpacing}>Submission Type: {task.entryType}</H1>
+                {task.entryType==='text' && !closed &&
                     <Button 
                         block
                         title={"Submit Text"}
@@ -139,11 +143,16 @@ class TaskItem extends Component {
                     </Text>
                     </Button>
                 }
-                <TaskResult task={taskName} ac={ac} />
-                <ViewSubmission ac={ac} task={taskName} />
-                
+              </Content>
+            </Tab>
+            <Tab heading="Review">
+            <Content style={{margin:10}}>
+              <TaskResult task={taskName} ac={ac} />
+              <ViewSubmission ac={ac} task={taskName} />
+            </Content>
+            </Tab>
+          </Tabs>
         </Content>
-
       <Footer>
         <FooterTab>
           <Button

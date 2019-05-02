@@ -105,14 +105,9 @@ return (
           <Tab heading="All">
           <Content>
           <ListEvent />
-
-          </Content>
+            </Content>
           </Tab>
-
         </Tabs>
-          {/* <ActiveEvents /> */}
-          {/* <ListEvent /> */}
-          {/* <CreateSH/>  */}
         </Content>
 
         <Footer>
