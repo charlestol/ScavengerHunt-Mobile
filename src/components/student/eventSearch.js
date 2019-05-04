@@ -139,12 +139,5 @@ export default class SearchEvent extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {},
-  textInput: {
-    height: 40,
-    width: "90%",
-    borderColor: "gray",
-    borderWidth: 1,
-    marginTop: 8
-  }
+  container: {}
 });
