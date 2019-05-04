@@ -59,7 +59,6 @@ export default class TaskResults extends Component {
 
     return (
       <Content>
-        {/* <H1 style={{ color: "blue" }}>Submission Review</H1> */}
         <H2>Score: {score}/1</H2>
         {feedback && <H2>Comment: {feedback}</H2>}
       </Content>

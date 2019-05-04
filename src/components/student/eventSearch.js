@@ -17,9 +17,7 @@ import {
   Item,
   Input,
   H2,
-  H1,
   View,
-  Separator
 } from "native-base";
 import JoinEvent from "./eventJoin";
 import firebase from "firebase/app";

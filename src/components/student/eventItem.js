@@ -14,11 +14,9 @@ import {
   Left,
   Right,
   Body,
-  H1,
   H2,
   H3,
   View,
-  Subtitle
 } from "native-base";
 import firebase from "firebase/app";
 import "firebase/firestore";

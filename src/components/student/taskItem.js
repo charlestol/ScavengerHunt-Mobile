@@ -13,11 +13,9 @@ import {
   Left,
   Right,
   Body,
-  H1,
   H2,
   Tabs,
-  Tab,
-  View
+  Tab
 } from "native-base";
 import { withNavigation } from "react-navigation";
 import firebase from "firebase/app";
@@ -110,13 +108,10 @@ class TaskItem extends Component {
           <Tabs>
             <Tab heading="Submission">
               <Content style={{ margin: 10 }}>
-                {/* <H2 style={styles.textSpacing}>Task: {taskName}</H2> */}
                 <H2 style={styles.textSpacing}>
                   Instructions: {task.instructions}
                 </H2>
-                <H2 style={styles.textSpacing}>
-                  Type: {task.entryType}
-                </H2>
+                <H2 style={styles.textSpacing}>Type: {task.entryType}</H2>
                 {task.entryType === "text" && !closed && (
                   <Button
                     block
@@ -186,11 +181,7 @@ class TaskItem extends Component {
 export default withNavigation(TaskItem);
 
 const styles = StyleSheet.create({
-  container: {
-    // flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center'
-  },
+  container: {},
   textSpacing: {
     marginBottom: 10
   }

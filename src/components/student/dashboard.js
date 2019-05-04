@@ -1,5 +1,4 @@
 import React from "react";
-// import { StyleSheet, Platform, Image, Text, View, Button } from 'react-native'
 import { StyleSheet } from "react-native";
 import {
   Container,
