@@ -75,7 +75,7 @@ return (
           </Body>
           <Right>
           <Button
-              // transparent
+              transparent
               onPress={this.handleSignout}
             >
               <Text> Signout </Text>

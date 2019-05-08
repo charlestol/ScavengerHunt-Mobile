@@ -1,75 +1,65 @@
-import React, { Component } from 'react';  
-// import { View, Text, TextInput, StyleSheet, Alert, Button } from 'react-native';
-import { View, StyleSheet, TextInput } from 'react-native';
-import {
-  Container,
-  Header,
-  Title,
-  Content,
-  Text,
-  Button,
-  Icon,
-  Footer,
-  FooterTab,
-  Left,
-  Right,
-  Body,
-  ListItem,
-  List,
-  H1
-} from "native-base";
-import { withNavigation } from 'react-navigation'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-require('../../config')
+import React, { Component } from "react";
+import { View, StyleSheet } from "react-native";
+import { Content, Text, Button, H2 } from "native-base";
+import { withNavigation } from "react-navigation";
+import firebase from "firebase/app";
+import "firebase/firestore";
+require("../../config");
 const db = firebase.firestore();
 
 class TaskList extends Component {
   state = {
     tasks: [],
     completed: []
-  }
+  };
 
   componentDidMount() {
-    let ac = this.props.accessCode
-    let tasks = []
-    let completedTasks = {}
-    let completed = []
+    let ac = this.props.accessCode;
+    let tasks = [];
+    let completedTasks = {};
+    let completed = [];
 
     this.unsubscribe = firebase.auth().onAuthStateChanged(user => {
-      if(user === null) {
-          return
-      }  
-      db.collection('scavengerHunts').doc(ac).collection('members').doc(user.email).collection('submissions').get()
-      .then(querySnapshot => {
-        querySnapshot.forEach(doc => {
-          let data = doc.data()
-          completedTasks[data.taskName] = data
-          completed.push(data.taskName)
-        })
-        // console.log("comp ",completed)
-        db.doc(`scavengerHunts/${ac}`).collection('tasks').get()
+      if (user === null) {
+        return;
+      }
+      db.collection("scavengerHunts")
+        .doc(ac)
+        .collection("members")
+        .doc(user.email)
+        .collection("submissions")
+        .get()
         .then(querySnapshot => {
           querySnapshot.forEach(doc => {
-              let data = doc.data()
-              let taskName = data.name
-              if(!completedTasks.hasOwnProperty(taskName)) {
-                tasks.push(taskName)
-              }
-          })
-          // console.log(tasks)
+            let data = doc.data();
+            completedTasks[data.taskName] = data;
+            completed.push(data.taskName);
+          });
+          // console.log("comp ",completed)
+          db.doc(`scavengerHunts/${ac}`)
+            .collection("tasks")
+            .get()
+            .then(querySnapshot => {
+              querySnapshot.forEach(doc => {
+                let data = doc.data();
+                let taskName = data.name;
+                if (!completedTasks.hasOwnProperty(taskName)) {
+                  tasks.push(taskName);
+                }
+              });
+              // console.log(tasks)
 
-          this.setState({
-            tasks,
-            completed
-          })
-        })
-      })
-    })
+              this.setState({
+                tasks,
+                completed
+              });
+            });
+        });
+    });
   }
 
   componentWillUnmount() {
-    this.unsubscribe()
+    this.unsubscribe();
   }
 
   render() {
@@ -77,79 +67,55 @@ class TaskList extends Component {
     // console.log('list', tasks)
 
     return (
-
-      <Content
-      style={{margin:10}}
-      >
-      {tasks.length !== 0 && <Text>Tasks In-Progress</Text>}
-      {tasks.length !== 0 && tasks.map(task => (
-        <View key={task}>
-          <Button
-            style={{marginBottom:10}}
-            block
-            onPress={() => {
-              this.props.navigation.navigate('STaskItem', {
-                accessCode: this.props.accessCode,
-                taskName: task
-              })
-            }}
-          > 
-          <Text>{task} </Text>
-          </Button>
-        </View>
-      ))}
-      {completed.length !== 0 && <Text>Tasks Completed</Text>}
-      {completed.length !== 0 && completed.map(task => (
-        <View key={task}>
-          <Button
-            style={{marginBottom:10}}
-            block
-            onPress={() => {
-              this.props.navigation.navigate('STaskItem', {
-                accessCode: this.props.accessCode,
-                taskName: task
-              })
-            }}
-          > 
-          <Text> 
-            {task}
-          </Text>
-          </Button>            
-        </View>
-      ))}
-    </Content>
-
-      // <View>
-      //   {tasks.length !== 0 && <Text>Tasks In-Progress</Text>}
-      //   {tasks.length !== 0 && tasks.map(task => (
-      //     <View key={task}>
-      //       <Button
-      //         title={task}
-      //         onPress={() => {
-      //           this.props.navigation.navigate('STaskItem', {
-      //             accessCode: this.props.accessCode,
-      //             taskName: task
-      //           })
-      //         }}
-      //       />
-      //     </View>
-      //   ))}
-      //   {completed.length !== 0 && <Text>Tasks Completed</Text>}
-      //   {completed.length !== 0 && completed.map(task => (
-      //     <View key={task}>
-      //       <Button
-      //         title={task}
-      //         onPress={() => {
-      //           this.props.navigation.navigate('STaskItem', {
-      //             accessCode: this.props.accessCode,
-      //             taskName: task
-      //           })
-      //         }}
-      //       />            
-      //     </View>
-      //   ))}
-      // </View>
-    )
+      <Content style={{ margin: 10 }}>
+        {tasks.length !== 0 && (
+          <H2 style={{ marginBottom: 10 }}>In-Progress</H2>
+        )}
+        {tasks.length !== 0 &&
+          tasks.map(task => (
+            <View key={task}>
+              <Button
+                style={{ marginBottom: 10 }}
+                block
+                warning
+                rounded
+                bordered
+                onPress={() => {
+                  this.props.navigation.navigate("STaskItem", {
+                    accessCode: this.props.accessCode,
+                    taskName: task
+                  });
+                }}
+              >
+                <Text>{task} </Text>
+              </Button>
+            </View>
+          ))}
+        {completed.length !== 0 && (
+          <H2 style={{ marginBottom: 10 }}>Completed</H2>
+        )}
+        {completed.length !== 0 &&
+          completed.map(task => (
+            <View key={task}>
+              <Button
+                style={{ marginBottom: 10 }}
+                block
+                success
+                rounded
+                bordered
+                onPress={() => {
+                  this.props.navigation.navigate("STaskItem", {
+                    accessCode: this.props.accessCode,
+                    taskName: task
+                  });
+                }}
+              >
+                <Text>{task}</Text>
+              </Button>
+            </View>
+          ))}
+      </Content>
+    );
   }
 }
-export default withNavigation(TaskList)
+export default withNavigation(TaskList);
