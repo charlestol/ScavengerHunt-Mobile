@@ -24,7 +24,7 @@ class ListEvent extends Component {
       }  
         
         
-      unsubscribe = db.collection('scavengerHunts').where("email", "==", user.email)
+      this.unsubscribe = db.collection('scavengerHunts').where("email", "==", user.email)
       .onSnapshot(snapshot => {
         let scavengerHunts = [];
 
@@ -38,7 +38,7 @@ class ListEvent extends Component {
       });})
     }
     componentWillUnmount() {
-      this.unsubscribe
+      this.unsubscribe()
   }
     render() {
         const { scavengerHunts } = this.state;

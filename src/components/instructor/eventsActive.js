@@ -21,7 +21,7 @@ class ActiveEvents extends Component {
   state = { activeEvents: [] };
 
   componentDidMount() {
-    firebase.auth().onAuthStateChanged(user => {
+    this.unsubscribe = firebase.auth().onAuthStateChanged(user => {
     if(user === null) {
       return;
     }  
@@ -48,6 +48,10 @@ class ActiveEvents extends Component {
         activeEvents
       });
     });})
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe()
   }
 
   render() {

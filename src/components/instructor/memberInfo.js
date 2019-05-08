@@ -41,13 +41,15 @@ export default class MemberInfo extends Component {
   componentDidMount() {
     let ac = this.props.navigation.state.params.accessCode
     let email = this.props.navigation.state.params.email
+
     db.collection("scavengerHunts").doc(ac).collection('members').doc(email).get()
     .then(doc => {
-      const memberInfo = doc.data();
+      const memberInfo = doc.data()
       // console.log(memberInfo)
       this.setState({ memberInfo })
     })
   }
+
   render() {
     const { memberInfo } = this.state;
     let ac = this.props.navigation.state.params.accessCode

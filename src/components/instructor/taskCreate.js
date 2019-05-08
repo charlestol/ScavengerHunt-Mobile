@@ -12,6 +12,8 @@ const INITIAL_STATE = {
     entryType: 'image'
 }
 
+const ERROR_TASK_EXISTS = "A task with this name already exists. Please try a different name."
+
 export default class CreateTask extends Component {  
     state = { ...INITIAL_STATE };
 
@@ -29,27 +31,32 @@ export default class CreateTask extends Component {
         };
 
         const accessCode = this.props.ac
-
-        db.collection('scavengerHunts').doc(accessCode).collection('tasks').doc(name).set(taskData)
-        .then(() => {
-            db.collection('scavengerHunts').doc(accessCode).update({
-                numOfTasks: firebase.firestore.FieldValue.increment(1)
-            })
+        db.collection('scavengerHunts').doc(accessCode).collection('tasks').doc(name).get()
+        .then(doc => {
+          if(doc.exists) {
+            Alert.alert(ERROR_TASK_EXISTS)
+          } else {
+            db.collection('scavengerHunts').doc(accessCode).collection('tasks').doc(name).set(taskData)
             .then(() => {
-                // console.log("Document successfully written!");
-                Alert.alert('Task Successfully Created');
-                this.setState({ ...INITIAL_STATE });
+                db.collection('scavengerHunts').doc(accessCode).update({
+                    numOfTasks: firebase.firestore.FieldValue.increment(1)
+                })
+                .then(() => {
+                    // console.log("Document successfully written!");
+                    Alert.alert('Task Successfully Created');
+                    this.setState({ ...INITIAL_STATE });
+                })
+                .catch(error => {
+                    // console.error("Error writing document: ", error);
+                    Alert.alert('Creating Task Unsuccessful');
+                });
             })
             .catch(error => {
                 // console.error("Error writing document: ", error);
                 Alert.alert('Creating Task Unsuccessful');
             });
+          }
         })
-        .catch(error => {
-            // console.error("Error writing document: ", error);
-            Alert.alert('Creating Task Unsuccessful');
-        });
-
     }
   render() {
     //   console.log(accessCode)

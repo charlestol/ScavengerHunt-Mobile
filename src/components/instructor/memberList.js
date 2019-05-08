@@ -39,7 +39,7 @@ export default class ListMember extends Component {
     componentDidMount() {
         let ac = this.props.navigation.state.params.accessCode
         // console.log(this.props.navigation.state.params.accessCode)
-        db.collection("scavengerHunts").doc(ac).collection('members')
+        this.unsubscribe = db.collection("scavengerHunts").doc(ac).collection('members')
         .onSnapshot(querySnapshot => {
             let members = [];
             querySnapshot.forEach(doc => {
@@ -51,6 +51,10 @@ export default class ListMember extends Component {
               members,
             });
           });
+    }
+
+    componentWillUnmount() {
+      this.unsubscribe()
     }
 
   render() {

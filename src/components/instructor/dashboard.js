@@ -16,7 +16,8 @@ import {
   ListItem,
   List,
   Tab,
-  Tabs
+  Tabs,
+  H1
 } from "native-base";
 import firebase from 'firebase/app';
 import ListEvent from './eventList';
