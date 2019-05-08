@@ -18,13 +18,13 @@ class ListEvent extends Component {
     state = { scavengerHunts: [] };
 
     componentDidMount() {
-      this.unsubscribe = firebase.auth().onAuthStateChanged(user => {
+      firebase.auth().onAuthStateChanged(user => {
       if(user === null) {
         return;
       }  
         
         
-      db.collection('scavengerHunts').where("email", "==", user.email)
+      this.unsubscribe = db.collection('scavengerHunts').where("email", "==", user.email)
       .onSnapshot(snapshot => {
         let scavengerHunts = [];
 
