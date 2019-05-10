@@ -163,7 +163,7 @@ export default class CreateSH extends Component {
               onDateChange={(date) => {this.setState({dateStart: date})}}
             />
             <TimePicker
-              style={styles.lineMargin}
+              // style={styles.lineMargin}
 
               selectedHours={this.state.selectedStartHours}
               //initial Hourse value

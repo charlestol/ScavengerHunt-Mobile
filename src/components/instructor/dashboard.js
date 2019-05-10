@@ -97,22 +97,18 @@ return (
         <Content>
 
         <Tabs>
-          <Tab heading="All">
-          <Content>
-          <ListEvent />
-
-          </Content>
-          </Tab>
           <Tab heading="Active">
             <Content>
           <ActiveEvents />
 
             </Content>
           </Tab>
+          <Tab heading="All">
+          <Content>
+          <ListEvent />
+            </Content>
+          </Tab>
         </Tabs>
-          {/* <ActiveEvents /> */}
-          {/* <ListEvent /> */}
-          {/* <CreateSH/>  */}
         </Content>
 
         <Footer>

@@ -4,6 +4,10 @@
   "packagerNgrokUrl": "https://packager.vu-zc5.anonymous.scavengerhunt-mobile.exp.direct",
   "ngrokPid": 5295,
   "devToolsPort": 19002,
+  "expoServerPort": null,
   "packagerPort": null,
-  "packagerPid": null
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
