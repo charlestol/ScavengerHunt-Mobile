@@ -24,3 +24,5 @@ yarn-error.log*
 
 .vscode
 .expo
+.expo/packager-info.json
+.expo/settings.json
