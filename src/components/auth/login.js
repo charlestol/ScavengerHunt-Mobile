@@ -1,5 +1,5 @@
 // Login.js
-import React from 'react'
+import React from "react";
 import {
   Container,
   Content,
@@ -9,41 +9,47 @@ import {
   Input,
   Form,
   Text,
-  H1
+  H1,
+  Icon
 } from "native-base";
-import { StyleSheet, TextInput, View} from 'react-native'
-import firebase from 'firebase';
-require('../../config')
+import { StyleSheet } from "react-native";
+import firebase from "firebase";
+require("../../config");
 
 export default class Login extends React.Component {
-  state = { email: '', password: '', errorMessage: null }
+  state = { email: "", password: "", errorMessage: null };
 
   handleLogin = () => {
-    const { email, password } = this.state
+    const { email, password } = this.state;
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(() => this.props.navigation.navigate('StudentDash'))
-      .catch(error => this.setState({ errorMessage: error.message }))
-  }
+      .then(() => this.props.navigation.navigate("StudentDash"))
+      .catch(error => this.setState({ errorMessage: error.message }));
+  };
 
   render() {
     return (
-      <Container >
-        <Content style={styles.content}>
-          <H1 style={{marginTop: 200, textAlign: "center"}}>Login</H1>
-          {this.state.errorMessage &&
-          <Text style={{ 
-            color: 'red',
-            marginRight: 50,
-            marginLeft: 50
-            }}>
-            {this.state.errorMessage}
-          </Text>}
-          <Form style={{marginLeft: 35, marginRight: 35}}>
+      <Container style={styles.container}>
+        <Content >
+          <H1 style={{ marginTop: 200, textAlign: "center" }}>Login</H1>
+          {this.state.errorMessage && (
+            <Text
+              style={{
+                color: "red",
+                marginRight: 50,
+                marginLeft: 50
+              }}
+            >
+              {this.state.errorMessage}
+            </Text>
+          )}
+          <Form style={{ marginLeft: 35, marginRight: 35 }}>
             <Item floatingLabel>
               <Label>Username</Label>
-              <Input 
+              <Icon active name="ios-person" />
+              
+              <Input
                 style={styles.textInput}
                 autoCapitalize="none"
                 onChangeText={email => this.setState({ email })}
@@ -52,7 +58,9 @@ export default class Login extends React.Component {
             </Item>
             <Item floatingLabel last>
               <Label>Password</Label>
-              <Input 
+              <Icon active name="ios-lock" />
+
+              <Input
                 secureTextEntry
                 style={styles.textInput}
                 autoCapitalize="none"
@@ -61,68 +69,40 @@ export default class Login extends React.Component {
               />
             </Item>
           </Form>
-          <Button
-              block
-              onPress={this.handleLogin}
-              style={styles.loginBtn}
-            >
-              <Text>Sign In</Text>
+          <Button block onPress={this.handleLogin} style={styles.loginBtn}>
+            <Text>Sign In</Text>
           </Button>
           <Button
-              block
-              transparent
-              onPress={() => this.props.navigation.navigate('')}
-              style={styles.forgotBtn}
-            >
-              <Text>Forgot Password</Text>
+            block
+            dark
+            transparent
+            onPress={() => this.props.navigation.navigate("")}
+            style={styles.forgotBtn}
+          >
+            <Text>Forgot Password</Text>
           </Button>
           <Button
-              block
-              transparent
-              onPress={() => this.props.navigation.navigate('SignUp')}
-              style={styles.signupBtn}
-            >
-              <Text>Create an account</Text>
+            block
+            // success
+            transparent
+            onPress={() => this.props.navigation.navigate("SignUp")}
+            style={styles.signupBtn}
+          >
+            <Text>Create an account</Text>
           </Button>
         </Content>
       </Container>
-      // <View style={styles.container}>
-      //   <Text>Login</Text>
-      //   {this.state.errorMessage &&
-      //     <Text style={{ color: 'red' }}>
-      //       {this.state.errorMessage}
-      //     </Text>}
-      //   <TextInput
-      //     style={styles.textInput}
-      //     autoCapitalize="none"
-      //     placeholder="Email"
-      //     onChangeText={email => this.setState({ email })}
-      //     value={this.state.email}
-      //   />
-      //   <TextInput
-      //     secureTextEntry
-      //     style={styles.textInput}
-      //     autoCapitalize="none"
-      //     placeholder="Password"
-      //     onChangeText={password => this.setState({ password })}
-      //     value={this.state.password}
-      //   />
-      //   <Button title="Login" onPress={this.handleLogin} />
-      //   <Button
-      //     title="Don't have an account? Sign Up"
-      //     onPress={() => this.props.navigation.navigate('SignUp')}
-      //   />
-      // </View>
-    )
+    );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#FFF",
+    // backgroundColor: "#FFF"
+    backgroundColor: "#F4FFF8"
   },
   loginBtn: {
-    marginTop: 50,
+    marginTop: 25,
     marginRight: 50,
     marginLeft: 50
   },
@@ -132,8 +112,8 @@ const styles = StyleSheet.create({
     marginLeft: 50
   },
   forgotBtn: {
-    marginTop: 200,
+    marginTop: 50,
     marginRight: 50,
     marginLeft: 50
   }
-})
+});

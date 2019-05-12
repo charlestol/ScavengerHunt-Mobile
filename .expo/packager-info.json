@@ -2,12 +2,8 @@
   "expoServerPort": null,
   "expoServerNgrokUrl": "https://vu-zc5.anonymous.scavengerhunt-mobile.exp.direct",
   "packagerNgrokUrl": "https://packager.vu-zc5.anonymous.scavengerhunt-mobile.exp.direct",
-  "ngrokPid": 5295,
+  "ngrokPid": 4155,
   "devToolsPort": 19002,
-  "expoServerPort": null,
   "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "packagerPid": null
 }
