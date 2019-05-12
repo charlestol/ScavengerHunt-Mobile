@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Alert, StyleSheet} from "react-native";
+import { Alert, StyleSheet } from "react-native";
 
 import {
   Container,
@@ -17,7 +17,7 @@ import {
   Form,
   Item,
   Input,
-  H2,
+  H2
 } from "native-base";
 import TimePicker from "react-native-simple-time-picker";
 // import DateTimePicker from "react-native-modal-datetime-picker";
@@ -234,10 +234,16 @@ export default class CreateSH extends Component {
               })
             }
           />
+          <Button
+            style={{ marginTop: 25 }}
+            full
+            danger
+            onPress={this.onCreateEvent}
+          >
+            <Text>Create Event</Text>
+          </Button>
         </Content>
-        <Button full danger onPress={this.onCreateEvent}>
-          <Text>Create Event</Text>
-        </Button>
+
         <Footer>
           <FooterTab>
             <Button

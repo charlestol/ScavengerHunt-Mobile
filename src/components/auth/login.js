@@ -9,7 +9,8 @@ import {
   Input,
   Form,
   Text,
-  H1
+  H1,
+  Icon
 } from "native-base";
 import { StyleSheet } from "react-native";
 import firebase from "firebase";
@@ -46,6 +47,8 @@ export default class Login extends React.Component {
           <Form style={{ marginLeft: 35, marginRight: 35 }}>
             <Item floatingLabel>
               <Label>Username</Label>
+              <Icon active name="ios-person" />
+              
               <Input
                 style={styles.textInput}
                 autoCapitalize="none"
@@ -55,6 +58,8 @@ export default class Login extends React.Component {
             </Item>
             <Item floatingLabel last>
               <Label>Password</Label>
+              <Icon active name="ios-lock" />
+
               <Input
                 secureTextEntry
                 style={styles.textInput}
@@ -69,7 +74,7 @@ export default class Login extends React.Component {
           </Button>
           <Button
             block
-            danger
+            dark
             transparent
             onPress={() => this.props.navigation.navigate("")}
             style={styles.forgotBtn}
@@ -78,7 +83,7 @@ export default class Login extends React.Component {
           </Button>
           <Button
             block
-            success
+            // success
             transparent
             onPress={() => this.props.navigation.navigate("SignUp")}
             style={styles.signupBtn}
