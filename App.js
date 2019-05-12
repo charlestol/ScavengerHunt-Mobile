@@ -87,4 +87,4 @@ export default class App extends Component {
     return loading ? <Text>Loading...</Text> : <Routes />;
   }
 }
-// export default App
+
