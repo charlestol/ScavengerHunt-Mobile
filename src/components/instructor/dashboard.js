@@ -1,5 +1,5 @@
-import React from 'react'
-import { StyleSheet, ListView} from 'react-native'
+import React from "react";
+import { StyleSheet, ListView } from "react-native";
 import {
   Container,
   Header,
@@ -13,36 +13,36 @@ import {
   Left,
   Right,
   Body,
-  ListItem,
-  List,
   Tab,
-  Tabs
+  Tabs,
 } from "native-base";
-import firebase from 'firebase/app';
-import ListEvent from './eventList';
-import CreateSH from './eventCreate';
-import ActiveEvents from './eventsActive';
+import firebase from "firebase/app";
+import ListEvent from "./eventList";
+import CreateSH from "./eventCreate";
+import ActiveEvents from "./eventsActive";
 
-require('../../config')
+require("../../config");
 
 export default class InstructorDash extends React.Component {
-  state = { currentUser: null }
+  state = { currentUser: null };
 
   componentDidMount() {
-      const { currentUser } = firebase.auth()
-      this.setState({ currentUser })
+    const { currentUser } = firebase.auth();
+    this.setState({ currentUser });
   }
 
   handleSignout = () => {
-    firebase.auth().signOut().then(function() {
-  // Sign-out successful.
-  this.props.navigation.navigate('Login')
-}).catch(function(error) {
-  // An error happened.
-});
-  }
-
-
+    firebase
+      .auth()
+      .signOut()
+      .then(function() {
+        // Sign-out successful.
+        this.props.navigation.navigate("Login");
+      })
+      .catch(function(error) {
+        // An error happened.
+      });
+  };
 
   constructor(props) {
     super(props);
@@ -50,7 +50,7 @@ export default class InstructorDash extends React.Component {
       tab1: true,
       tab2: false,
       tab3: false,
-      basic: true,
+      basic: true
     };
   }
 
@@ -74,67 +74,56 @@ export default class InstructorDash extends React.Component {
       tab2: false,
       tab3: true
     });
-  }  
+  }
 
-render() {
-    const { currentUser } = this.state
-return (
+  render() {
+    const { currentUser } = this.state;
+    return (
       <Container style={styles.container}>
         <Header>
+          <Left />
           <Body>
             <Title>Dashboard</Title>
           </Body>
-          <Right>
-          <Button
-              transparent
-              onPress={() => this.props.navigation.navigate('EventCreate')}
-            >
-              <Text> Create </Text>
-            </Button>
-          </Right>
+          <Right />
         </Header>
         <Content>
-
-        <Tabs>
-          <Tab heading="Active">
-            <Content>
-          <ActiveEvents />
-
-            </Content>
-          </Tab>
-          <Tab heading="All">
-          <Content>
-          <ListEvent />
-            </Content>
-          </Tab>
-        </Tabs>
+          <Tabs>
+            <Tab heading="Active">
+              <Content>
+                <ActiveEvents />
+              </Content>
+            </Tab>
+            <Tab heading="All">
+              <Content>
+                <ListEvent />
+              </Content>
+            </Tab>
+          </Tabs>
         </Content>
 
         <Footer>
           <FooterTab>
-            <Button onPress={() => this.props.navigation.navigate('DashboardT')}>
+            <Button
+              onPress={() => this.props.navigation.navigate("DashboardT")}
+            >
               <Icon name="home" />
               <Text>Home</Text>
             </Button>
-            <Button onPress={() => this.props.navigation.navigate('ProfileT')}>
+            <Button onPress={() => this.props.navigation.navigate("ProfileT")}>
               <Icon name="person" />
               <Text>Profile</Text>
+            </Button>
+            <Button
+              onPress={() => this.props.navigation.navigate("EventCreate")}
+            >
+              <Icon name="ios-create" />
+              <Text>Create</Text>
             </Button>
           </FooterTab>
         </Footer>
       </Container>
-
-      // <View style={styles.container}>
-      //   <Text>Instructor Dashboard</Text>
-      //   <Text>
-      //     Hi {currentUser && currentUser.email}!
-      //   </Text>
-      //   <CreateSH/> 
-      //   <ActiveEvents />
-      //   <ListEvent />
-      //   <Button title="sign out" onPress={this.handleSignout}></Button>
-      // </View>
-    )
+    );
   }
 }
 const styles = StyleSheet.create({
@@ -149,7 +138,7 @@ const styles = StyleSheet.create({
     marginBottom: 15
   },
   addFab: {
-    backgroundColor: '#5067FF',
+    backgroundColor: "#5067FF",
     position: "absolute",
     marginBottom: 10
   },
@@ -157,4 +146,4 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     margin: 10
   }
-})
+});

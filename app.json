@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "ScavengerHunt",
-    "slug": "ScavengerHunt",
+    "name": "SeekIt",
+    "slug": "SeekIt",
     "privacy": "public",
     "sdkVersion": "32.0.0",
     "platforms": [
@@ -10,9 +10,9 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/czilogodetailedmap.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splashpath2.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -24,6 +24,11 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "androidStatusBarColor": "#334393",
+    "androidStatusBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#334393"
     }
   }
 }
