@@ -67,31 +67,31 @@ export default class TotalScore extends Component {
 
   onSubmit = () => {
     const { totalScore, numOfTasks, feedback } = this.state;
-
+        
     let ac = this.props.ac;
     let email = this.props.email;
 
     let data = {
-      result: {
-        score: `${totalScore}/${numOfTasks}`,
-        feedback
-      }
-    };
-
+        result: {
+            score: `${totalScore}/${numOfTasks}`,
+            feedback
+        }
+    }
+    
     db.collection("scavengerHunts")
       .doc(ac)
       .collection("members")
-      .doc(email)
-      .get()
-      .then(() => {
-        this.setState({
-          feedback: ""
-        });
-        Alert.alert("Document successfully updated!");
-      })
-      .catch(error => {
-        Alert.alert("Error updating document");
-      });
+      .doc(email).update(data)
+    .then(() => {
+        this.setState({ 
+            feedback: '',
+        })
+        Alert.alert("Results Submitted!");
+    })
+    .catch(error => {
+        // The document probably doesn't exist.
+        Alert.alert("Error submitting results");
+    });
   };
 
   render() {
